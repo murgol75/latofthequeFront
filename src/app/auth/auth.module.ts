@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
-import { CreateplayerComponent } from './createplayer/createplayer.component';
+import { CreateplayerComponent } from './create-player/createplayer.component';
 
 
 @NgModule({
