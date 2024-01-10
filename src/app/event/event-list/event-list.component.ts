@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent {
+urlGetAllEvents:string = 'https://localhost:7238/Api/Event/getAllEvents/';
 
-}
+
+
+  }
+

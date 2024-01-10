@@ -6,6 +6,7 @@ import { GameCreateComponent } from './game-create/game-create.component';
 import { GameDetailsComponent } from './game-details/game-details.component';
 import { GameEditComponent } from './game-edit/game-edit.component';
 import { GameListComponent } from './game-list/game-list.component';
+import { GameComponent } from './game.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { GameListComponent } from './game-list/game-list.component';
     GameCreateComponent,
     GameDetailsComponent,
     GameEditComponent,
-    GameListComponent
+    GameListComponent,
+    GameComponent
   ],
   imports: [
     CommonModule,

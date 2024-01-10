@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { AccueilComponent } from './shared/components/accueil/accueil.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { NotfoundComponent } from './shared/components/notfound/notfound.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

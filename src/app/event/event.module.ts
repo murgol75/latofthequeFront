@@ -6,6 +6,7 @@ import { EventCreateComponent } from './event-create/event-create.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { EventEditComponent } from './event-edit/event-edit.component';
 import { EventListComponent } from './event-list/event-list.component';
+import { EventComponent } from './event.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { EventListComponent } from './event-list/event-list.component';
     EventCreateComponent,
     EventDetailsComponent,
     EventEditComponent,
-    EventListComponent
+    EventListComponent,
+    EventComponent
   ],
   imports: [
     CommonModule,
