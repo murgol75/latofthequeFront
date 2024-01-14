@@ -16,9 +16,8 @@ export class EventCreateComponent {
   OrganizerId : number = 9; // en attendant de le récupérer automatiquement à partir de l'User de l'observable
 
 
-  constructor(private _fb : FormBuilder, private _httpClient : HttpClient) {
+  constructor(private _fb : FormBuilder, private _httpClient : HttpClient) { // penser à faire tous les bons validators
     this.createForm = this._fb.group({
-      date : [null, [Validators.required]],
       startTime : [null, [Validators.required]],
       endTime : [null, [Validators.required]],
       fkOrganizerId : [this.OrganizerId],

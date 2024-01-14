@@ -24,8 +24,8 @@ export class EventService {
     return this._httpClient.get<EventLight[]>(this._url);
   }
 
-  getById(id: number): Observable<EventLight> {
-    return this._httpClient.get<EventLight>(this._url + id)
+  getById(id: number): Observable<Event> {
+    return this._httpClient.get<Event>(`${this._baseUrl}/Event/getEventById/ + id`)
   }
 
   create(event: Event): Observable<Event> {

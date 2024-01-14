@@ -4,10 +4,21 @@
             <div>
                 <h3 class="text-2xl font-bold mb-4">Créer un évènement :</h3>
                 <form [formGroup]="createForm" (ngSubmit)="create()" class="space-y-4">
-                    <input type="text" placeholder="Nom" formControlName="lastname" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300">
-                    <input type="text" placeholder="Prénom" formControlName="firstname" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300">
-                    <input type="email" placeholder="Email" formControlName="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300">
-                    <input type="password" placeholder="Password" formControlName="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300">
+                    <label for="startTime" class="block text-sm font-medium text-gray-700">Date et heure de début</label>
+                    <input type="datetime-local" placeholder="Date et heure de début" formControlName="startTime" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300">
+
+                    <label for="endTime" class="block text-sm font-medium text-gray-700">Date et heure de fin</label>
+                    <input type="datetime-local" placeholder="Date et heure de fin" formControlName="endTime" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300">
+
+                    <label for="registrationClosingDate" class="block text-sm font-medium text-gray-700">Date de fin des inscriptions</label>
+                    <input type="datetime-local" placeholder="Date de fin des inscriptions" formControlName="registrationClosingDate" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300">
+
+                    <label for="eventName" class="block text-sm font-medium text-gray-700">Nom de l'évènement</label>
+                    <input type="text" placeholder="Nom de l'évènement" formControlName="eventName" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300">
+                    
+                    <label for="eventDescription" class="block text-sm font-medium text-gray-700">Description de l'évènement</label>
+                    <textarea id="eventDescription" placeholder="Description de l'évènement" formControlName="eventDescription" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"></textarea>
+                    <!-- <input type="textarea" placeholder="Description de l'évènement" formControlName="eventDescription" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"> -->
                     <div>
                         <input class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" type="submit" value="Créer l'évènement">
                     </div>
@@ -16,3 +27,11 @@
         </div>
     </div>
 </div>
+
+
+<!-- startTime : [null, [Validators.required]],
+endTime : [null, [Validators.required]],
+fkOrganizerId : [this.OrganizerId],
+registrationClosingDate : [null, [Validators.required]],
+eventName : [null, [Validators.required]],
+eventDescription : [null, [Validators.required]] -->
