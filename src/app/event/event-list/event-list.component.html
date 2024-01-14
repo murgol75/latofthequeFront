@@ -1,1 +1,70 @@
-<p>event-list works!</p>
+<div class="flex flex-col items-center v-screen mb-4">
+    <h2>Découvrez les prochains évènements</h2>
+    <!-- <button *ngIf="connectedUser" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/events/eventCreate">Ajoutez un évènement</button> -->
+</div>
+
+<!-- <div>
+    <p>version epurée</p>
+    <table>
+        <thead>
+
+            <tr>
+                <th>N° de l'évènement</th>
+                <th>DATE</th>
+                <th>Debut</th>
+                <th>Fin</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let event of eventList">
+                <td>{{ event.eventId }}</td>
+                <td>{{ event.startTime | date : 'dd-MM-yyyy' }}</td>
+                <td>{{ event.startTime | date : 'HH:mm'}} </td>
+                <td>{{ event.endTime | date : 'HH:mm' }} </td>
+                <td>
+                    <button class="btn" routerLink="/demo/demo8/detail/{{event.eventId}}">🔎</button>
+                    <button class="btn" routerLink="/demo/demo8/update/{{event.eventId}}">📝</button>
+                    <button class="btn" routerLink="/demo/demo8/update/{{event.eventId}}">➕</button>
+                    <button class="btn" routerLink="/demo/demo8/update/{{event.eventId}}">❓</button>
+                    <button (click)="delete(event.eventId)" class="btn">❌</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->
+
+
+
+
+
+
+<div class="flex flex-wrap justify-evenly">
+    <div *ngFor="let event of eventList"
+        class="w-1/4 mx-4 max-w-sm p-6 bg-lime-400 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 my-5">
+        <h5 class="text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {{event.eventName}}</h5>
+        <p class="text-center mb-3 font-normal text-gray-700 dark:text-gray-400">LE
+            {{event.startTime | date : 'dd-MM-yyyy' }}</p>
+            <p class="text-center mb-3 font-normal text-gray-700 dark:text-gray-400">DE {{ event.startTime | date :
+                'HH:mm'}} A {{ event.endTime | date : 'HH:mm'}}</p>
+        <!-- <p class="text-center mb-3 font-normal text-gray-700 dark:text-gray-400">A {{ event.endTime | date : 'HH:mm'}}
+        </p> -->
+        <p class="text-center mb-3 font-normal text-gray-700 dark:text-gray-400">CLOTURE LE
+            {{event.registrationClosingDate| date : 'dd-MM-yyyy HH:mm' }}</p>
+        <div class="flex flex-wrap justify-evenly">
+            <button routerLink="/events/eventDetails"
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-amber-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Plus de détails
+            </button>
+            <button routerLink="/events/eventDetails"
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-amber-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Supprimer
+            </button>
+            <button routerLink="/events/eventDetails"
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-amber-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                S'inscrire
+            </button>
+        </div>
+    </div>
+
+</div>

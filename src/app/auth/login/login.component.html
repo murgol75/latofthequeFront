@@ -1,1 +1,13 @@
-<p>login works!</p>
+<div class="flex justify-center">
+    <form [formGroup]="loginForm" (ngSubmit)="connect()">
+        <p>Connexion</p>
+        <label>Pseudo</label>
+        <input type="text" id="nickname" formControlName="Nickname">
+        <label>Mot de passe</label>
+        <input type="password" id="password" formControlName="Password">
+        <div class="flex justify-center">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Me
+            connecter</button>
+        </div>
+    </form>
+</div>
