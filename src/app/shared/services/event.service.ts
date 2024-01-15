@@ -3,6 +3,7 @@ import { EventLight } from '../models/eventLight';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EventFull } from '../models/eventFull';
+import {GameLight} from '../models/GameLight'
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class EventService {
 
   getById(id: number): Observable<EventFull> {
     return this._httpClient.get<EventFull>(`${this._baseUrl}/Event/getEventById/${id}`)
+  }
+
+  getGamesForAnEvent(eventId : number): Observable<GameLight[]> {
+    return this._httpClient.get<GameLight[]>(`${this._baseUrl}/Event/getGamesForEvent/${eventId}`)
   }
 
   create(event: Event): Observable<Event> {

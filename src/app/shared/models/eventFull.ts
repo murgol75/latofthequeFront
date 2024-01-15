@@ -4,4 +4,6 @@ export interface EventFull {
     endTime : string ;
     registrationClosingDate : string;
     eventName : string;
+    eventDescription : string;
+    participatingPlayers : string[]
 }
