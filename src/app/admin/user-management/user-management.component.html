@@ -1,8 +1,8 @@
-<p>faire la liste des joueurs avec le bouton pour les modifier, les supprimer, et cocher pour IsAdmin (en fait non, isAdmin je le mettrai dans update player)</p>
+<p>faire la liste des joueurs avec le bouton pour les modifier, les supprimer, et cocher pour IsAdmin (en fait non, isAdmin je créerai une page à part pour donner les rôles)</p>
 
 
 <div class="flex flex-col items-center v-screen mb-4">
-    <h2>Voici la liste des joueurs inscrits</h2>
+    <h2 class="text-4xl font-extrabold dark:text-white">Voici la liste des joueurs inscrits sur le site</h2>
     <!-- <button *ngIf="connectedUser" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/players/playerCreate">Ajoutez un évènement</button> -->
 </div>
 
@@ -61,7 +61,7 @@
                 <tr *ngFor="let player of playerList">
                     <td class="px-6 py-4 whitespace-nowrap">{{ player.playerId }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ player.nickname }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">test{{ player.email }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ player.email }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ player.birthdate | date : 'dd-MM-yyyy'}}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-2 rounded" routerLink="/demo/demo8/update/{{player.playerId}}">📝 </button>

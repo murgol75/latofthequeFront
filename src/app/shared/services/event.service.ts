@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { EventLight } from '../models/eventLight';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EventFull } from '../models/eventFull';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,8 @@ export class EventService {
     return this._httpClient.get<EventLight[]>(this._url);
   }
 
-  getById(id: number): Observable<Event> {
-    return this._httpClient.get<Event>(`${this._baseUrl}/Event/getEventById/ + id`)
+  getById(id: number): Observable<EventFull> {
+    return this._httpClient.get<EventFull>(`${this._baseUrl}/Event/getEventById/${id}`)
   }
 
   create(event: Event): Observable<Event> {

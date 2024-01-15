@@ -23,7 +23,7 @@ eventList : EventLight[] = [];
   loadEvents() {
     this._eventService.getAll().subscribe({
       next: (events) => {
-        this.eventList = events;
+        this.eventList = events.reverse(); // reverse, comme ça il affiche les derniers évènements encodés en premier
       },
       error: (err) => {
         console.error('Error loading events', err);

@@ -8,6 +8,7 @@ import { EventEditComponent } from './event-edit/event-edit.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventComponent } from './event.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EventClotureComponent } from './event-cloture/event-cloture.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     EventDetailsComponent,
     EventEditComponent,
     EventListComponent,
-    EventComponent
+    EventComponent,
+    EventClotureComponent
   ],
   imports: [
     CommonModule,
