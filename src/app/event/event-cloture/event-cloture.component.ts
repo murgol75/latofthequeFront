@@ -39,7 +39,7 @@ export class EventClotureComponent {
         if (!this.games) {
           this._router.navigateByUrl('notfound');
         }
-        console.log(this.games);
+        // console.log(this.games);
 
       },
       error: (err) => { },
