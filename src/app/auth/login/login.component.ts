@@ -13,6 +13,8 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 
 export class LoginComponent {
   loginForm: FormGroup;
+  isAdminConnected: boolean = false;
+  isUserConnected: boolean = false;
 
   constructor(
     private _fb: FormBuilder,
@@ -24,6 +26,37 @@ export class LoginComponent {
       Password: [null, Validators.required]
     });
   }
+  ngOnInit(): void {
+    // const user: string | undefined = undefined;
+    const storedUser: string | null = localStorage.getItem('Token');
+
+    if (storedUser) {
+        const decodedPayload: string = atob(storedUser.split('.')[1]);
+        const parsedPayload: any = JSON.parse(decodedPayload);
+
+        const nom = parsedPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+        const role = parsedPayload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+
+        console.log(nom, role);
+
+        if (role === 'Admin') {
+          
+            this.isAdminConnected = true;
+            this.isUserConnected = true;
+
+        }
+        else if (role === 'User') {
+            this.isAdminConnected = false;
+            this.isUserConnected = true;
+
+        }
+        else {
+            this.isAdminConnected = false;
+            this.isUserConnected = false;
+
+        }
+    }}
+
 
   connect(): void {
     
@@ -32,6 +65,10 @@ export class LoginComponent {
     } else {
       this._authService.login(this.loginForm.value);
     }
+  }
+
+  disconnect():void {
+    this._authService.logout();
   }
 }
 

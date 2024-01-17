@@ -1,3 +1,5 @@
-<p>player works!</p>
-<p *ngIf="connectedUser">{{connectedUser.member.nickname}}</p>
+<p *ngIf="!isUserConnected">Bienvenue étranger</p>
+<p *ngIf="isUserConnected">Bienvenue {{nickname}}</p>
+<a *ngIf="isUserConnected" href="player/playerEdit">Mettre à jour votre profil</a>
+<!-- <p>je ne sais pas que mettre sur cette page, surement que je ne l'utiliserai pas</p> -->
 <router-outlet></router-outlet>

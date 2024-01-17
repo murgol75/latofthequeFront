@@ -16,8 +16,10 @@ export class AuthService {
   private _baseUrl: string = 'https://localhost:7238/api'; 
 
   user : UserReceived |undefined;
-  private _$connectedUser : BehaviorSubject<UserReceived | undefined> = new BehaviorSubject<UserReceived | undefined>(undefined);
-  $connectedUser : Observable<UserReceived | undefined> = this._$connectedUser.asObservable();
+  private _$connectedUser : BehaviorSubject<UserLight | undefined> = new BehaviorSubject<UserLight | undefined>(undefined);
+  $connectedUser : Observable<UserLight | undefined> = this._$connectedUser.asObservable();
+private _$userToken : BehaviorSubject<string | undefined> = new BehaviorSubject<string | undefined>(undefined);
+$userToken : Observable<string | undefined> = this._$userToken.asObservable();
 
 
   constructor(private _http: HttpClient,
@@ -26,16 +28,20 @@ export class AuthService {
 
   getUser() : void {  // super utile pour recuperer le token quand on va rafraichir la page (dans app.component.ts il va voir si il y a un user)
     console.log('debut getUser');
-    let token : string | null = localStorage.getItem('apiToken');
+    let token : string | null = localStorage.getItem('Token');
     console.log('il a recuperé le token');
     console.log(token);
     if (token) {
       console.log('le token existe');
           this._http.get<UserReceived>(`${this._baseUrl}/Auth/UserInfo`, {
-            headers:{'Authorization': `Bearer ${token}`}
+            headers:{'Authorization': `Bearer ${token}`} // correspond à la demande de bearer token dans les contollers en back
           }).subscribe({
-            next:(user) => {
-              this._$connectedUser.next(user);
+            next:(res) => {
+              const userLight: UserLight = {
+                playerId:res.member.playerId,
+                nickname:res.member.nickname
+              }
+              this._$connectedUser.next(userLight);
               console.log(JSON.stringify(this._$connectedUser));
             },
             error:(err) => {
@@ -76,17 +82,19 @@ login(user : UserReceived):void {
           next: (res: UserReceived) => {
             console.log('next UserReceived');
   
-            localStorage.setItem('apiToken', res.token);
-  
+            localStorage.setItem('Token', res.token);
+            localStorage.setItem('Player', JSON.stringify(res.member));
+
+            this._$connectedUser.next(res.member)
             console.log('res.token');
             console.log(res.token);
 
-            this._$connectedUser.next(res);
+            this._$userToken.next(res.token);
             // this.getUser(); // Récupérer les détails après la connexion
             console.log('juste après le getUSer');
             console.log(res);
-  
-            this._router.navigate(['player']);
+            window.location.reload();
+            this._router.navigate(['event/eventList']);
           }
         });
       };
@@ -95,6 +103,9 @@ login(user : UserReceived):void {
         //On nettoie le storage pour enlever le token
         localStorage.clear();
         this._router.navigate(['']);
+        setTimeout(() => {
+          window.location.reload() // on fait F5 pour raffraichir la navbar
+      }, 10);
         //On met à jour notre Observable mais on sait pas encore cékoi un Observable
         return undefined;
       }

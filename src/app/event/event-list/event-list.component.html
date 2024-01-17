@@ -56,22 +56,22 @@
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Plus de détails
             </button>
-            <button routerLink="/event/eventDetails"
+            <button *ngIf="isAdminConnected" routerLink="/event/eventDetails"
             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Editer
         </button>
-            <button routerLink="/event/eventDetails"
+            <button *ngIf="isAdminConnected" routerLink="/event/eventDetails"
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Supprimer
             </button>
-            <button routerLink="/event/eventDetails"
+            <button *ngIf="isUserConnected" routerLink="/event/eventDetails"
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 S'inscrire
             </button>
-            <button routerLink="/event/eventCloture/{{event.eventId}}"
+            <button *ngIf="isAdminConnected && isUserConnected" routerLink="/event/eventCloture/{{event.eventId}}"
             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Voir résultat
-        </button>
+            Clôturer résultat
+        </button> <!-- ce bouton permettra à l'admin de cloturer l'évènement et si l'évènement est clôturé les joueurs pourront cliqué dessus pour avoir le résultat -->
 
         </div>
     </div>

@@ -4,4 +4,5 @@ export interface EventLight {
     endTime : string ;
     registrationClosingDate : string;
     eventName : string;
+    
 }

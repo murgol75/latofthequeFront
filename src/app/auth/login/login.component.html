@@ -1,4 +1,9 @@
-<div class="flex justify-center">
+<div *ngIf="isUserConnected" class="flex justify-center"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="disconnect()">Me
+    Déconnecter</button>
+</div>
+
+
+<div class="flex justify-center" *ngIf="!isUserConnected">
     <form [formGroup]="loginForm" (ngSubmit)="connect()">
         <p>Connexion</p>
         <label>Pseudo</label>

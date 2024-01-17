@@ -19,7 +19,7 @@ export class EventService {
 
    }
 
-  getAll(): Observable<EventLight[]> {
+  getAll(): Observable<EventLight[]> { // ajouter le bool registration close pour faire apparaitre le bouton resultat pour les joueurs
     
     this._httpClient.get<EventLight>(`${this._baseUrl}/Event/EventList`)
     

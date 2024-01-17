@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './shared/services/auth.service';
 import { UserReceived } from './shared/models/UserReceived';
+import { UserLight } from './shared/models/UserLight';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { UserReceived } from './shared/models/UserReceived';
 })
 export class AppComponent implements OnInit{
   title = 'luthofthequeFront';
-  connectedUser : UserReceived | undefined;
+  connectedUser : UserLight | undefined;
   constructor(private _authService : AuthService) {
 
   }

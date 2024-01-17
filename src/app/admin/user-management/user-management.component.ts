@@ -8,7 +8,7 @@ import { PlayerService } from 'src/app/shared/services/player.service';
   styleUrls: ['./user-management.component.scss']
 })
 export class UserManagementComponent {
-  urlGetAllPlayers:string = 'https://localhost:7238/Api/Player/getAllPlayers/';
+  // urlGetAllPlayers:string = 'https://localhost:7238/Api/Player/getAllPlayers/';
 
 
   playerList : User[] = [];

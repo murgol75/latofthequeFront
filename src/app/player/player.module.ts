@@ -18,4 +18,6 @@ import { PlayerComponent } from './player.component';
     PlayerRoutingModule
   ]
 })
-export class PlayerModule { }
+export class PlayerModule { 
+  
+}

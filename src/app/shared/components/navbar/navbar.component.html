@@ -9,11 +9,11 @@
         class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">JEUX</a>
         <a href="/event"
         class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">EVENEMENTS</a>
-      <a *ngIf="connectedUser?.member?.isAdmin" href="/admin/userManagement"
+      <a *ngIf="isAdminConnected" href="/admin/userManagement"
         class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">ADMINISTRATION</a>
-      <a *ngIf="!connectedUser" href="/auth/login" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">SE
+      <a *ngIf="!isUserConnected" href="/auth/login" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">SE
         CONNECTER</a>
-      <button *ngIf="connectedUser" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" (click)="logout()">SE
+      <button *ngIf="isUserConnected" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" (click)="disconnect()">SE
           DECONNECTER</button>
        
     </div>
