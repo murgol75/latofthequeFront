@@ -32,7 +32,6 @@ export class EventCreateComponent {
   create() : void {
     if(this.createForm.valid) {
       this._httpClient.post(this.url, this.createForm.value).subscribe(() => {
-        console.log('ok');
         this.createForm.reset();
       })
     }

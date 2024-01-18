@@ -30,7 +30,6 @@ constructor(
 
     this.eventId =+this._activeRoute.snapshot.params['id'];
 
-    // var event : Event | undefined = this._eventService.getById(this.eventId);
 
   if(!event) {
     this._router.navigateByUrl('/notfound');
@@ -46,10 +45,5 @@ constructor(
   //   eventName : event?.eventName,
   //   eventDescription : event?.eventDescription
   // });
-
-  
-
-
 }
-
 }

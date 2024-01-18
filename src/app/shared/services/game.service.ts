@@ -14,7 +14,6 @@ export class GameService {
 
 
   private _baseUrl: string = 'https://localhost:7238/api'
-  private _url: string = 'https://localhost:7238/api/Game'
   constructor(private _httpClient: HttpClient) {
 
    }
@@ -23,23 +22,23 @@ export class GameService {
     
     this._httpClient.get<GameList>(`${this._baseUrl}/Game/`)
     
-    return this._httpClient.get<GameList[]>(this._url);
+    return this._httpClient.get<GameList[]>(`${this._baseUrl}/Game/`);
   }
 
   getById(id: number): Observable<Game> {
-    return this._httpClient.get<Game>(this._url + id)
+    return this._httpClient.get<Game>(`${this._baseUrl}/Game/`+id)
   }
 
   create(game: User): Observable<Game> {
-    return this._httpClient.post<Game>(this._url, game);
+    return this._httpClient.post<Game>(`${this._baseUrl}/Game/`, game);
   }
 
   update(id : number, game : Game) : Observable<User> {
-    return this._httpClient.put<User>(this._url+id, game)
+    return this._httpClient.put<User>(`${this._baseUrl}/Game/`+id, game)
   }
 
   delete(id : number) : Observable<Game> {
-    return this._httpClient.delete<Game>(this._url+id);
+    return this._httpClient.delete<Game>(`${this._baseUrl}/Game/`+id);
   }
 
 }

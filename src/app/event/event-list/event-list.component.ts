@@ -10,7 +10,6 @@ import { EventService } from 'src/app/shared/services/event.service';
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
-urlGetAllEvents:string = 'https://localhost:7238/Api/Event/getAllEvents/';
 
 connectedUser : UserReceived | undefined;
 eventList : EventLight[] = [];
@@ -18,10 +17,11 @@ isAdminConnected: boolean = false;
 isUserConnected: boolean = false;
 
   constructor(private _eventService : EventService,private _authService : AuthService) {
-    // this.eventList = this._eventService.getAll();
   }
   
   ngOnInit(): void {
+    
+
     this.loadEvents();
     const storedUser: string | null = localStorage.getItem('Token');
 

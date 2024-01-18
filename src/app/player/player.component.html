@@ -1,5 +1,5 @@
 <p *ngIf="!isUserConnected">Bienvenue étranger</p>
 <p *ngIf="isUserConnected">Bienvenue {{nickname}}</p>
-<a *ngIf="isUserConnected" href="player/playerEdit">Mettre à jour votre profil</a>
+<button *ngIf="isUserConnected" [routerLink]="['player/playerEdit']">Mettre à jour votre profil</button>
 <!-- <p>je ne sais pas que mettre sur cette page, surement que je ne l'utiliserai pas</p> -->
 <router-outlet></router-outlet>

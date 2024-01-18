@@ -3,16 +3,16 @@
 <nav class="bg-gray-800">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
-      <a href=""
-        class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-3xl font-medium">🎲</a>
-      <a href="/game"
-        class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">JEUX</a>
-        <a href="/event"
-        class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">EVENEMENTS</a>
-      <a *ngIf="isAdminConnected" href="/admin/userManagement"
-        class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">ADMINISTRATION</a>
-      <a *ngIf="!isUserConnected" href="/auth/login" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">SE
-        CONNECTER</a>
+      <button [routerLink]="['']"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-3xl font-medium">🎲</button>
+      <button [routerLink]="['/game']"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">JEUX</button>
+        <button [routerLink]="['/event/eventList']"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">EVENEMENTS</button>
+      <button *ngIf="isAdminConnected" [routerLink]="['/admin/userManagement']"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">ADMINISTRATION</button>
+      <button *ngIf="!isUserConnected" [routerLink]="['/auth/login']" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">SE
+        CONNECTER</button>
       <button *ngIf="isUserConnected" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" (click)="disconnect()">SE
           DECONNECTER</button>
        

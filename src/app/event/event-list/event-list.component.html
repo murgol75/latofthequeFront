@@ -1,42 +1,6 @@
 <div class="flex flex-col items-center v-screen mb-4">
     <h2 class="text-4xl font-extrabold dark:text-white">Découvrez les prochains évènements</h2>
-    <!-- <button *ngIf="connectedUser" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/events/eventCreate">Ajoutez un évènement</button> -->
 </div>
-
-<!-- <div>
-    <p>version epurée</p>
-    <table>
-        <thead>
-
-            <tr>
-                <th>N° de l'évènement</th>
-                <th>DATE</th>
-                <th>Debut</th>
-                <th>Fin</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let event of eventList">
-                <td>{{ event.eventId }}</td>
-                <td>{{ event.startTime | date : 'dd-MM-yyyy' }}</td>
-                <td>{{ event.startTime | date : 'HH:mm'}} </td>
-                <td>{{ event.endTime | date : 'HH:mm' }} </td>
-                <td>
-                    <button class="btn" routerLink="/demo/demo8/detail/{{event.eventId}}">🔎</button>
-                    <button class="btn" routerLink="/demo/demo8/update/{{event.eventId}}">📝</button>
-                    <button class="btn" routerLink="/demo/demo8/update/{{event.eventId}}">➕</button>
-                    <button class="btn" routerLink="/demo/demo8/update/{{event.eventId}}">❓</button>
-                    <button (click)="delete(event.eventId)" class="btn">❌</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div> -->
-
-
-
-
-
 
 <div class="flex flex-wrap justify-evenly">
     <div *ngFor="let event of eventList"
@@ -45,10 +9,8 @@
             {{event.eventName}}</h5>
         <p class="text-center mb-3 font-normal text-gray-700 dark:text-gray-400">LE
             {{event.startTime | date : 'dd-MM-yyyy' }}</p>
-            <p class="text-center mb-3 font-normal text-gray-700 dark:text-gray-400">DE {{ event.startTime | date :
-                'HH:mm'}} A {{ event.endTime | date : 'HH:mm'}}</p>
-        <!-- <p class="text-center mb-3 font-normal text-gray-700 dark:text-gray-400">A {{ event.endTime | date : 'HH:mm'}}
-        </p> -->
+        <p class="text-center mb-3 font-normal text-gray-700 dark:text-gray-400">DE {{ event.startTime | date :
+            'HH:mm'}} A {{ event.endTime | date : 'HH:mm'}}</p>
         <p class="text-center mb-3 font-normal text-gray-700 dark:text-gray-400">CLOTURE LE
             {{event.registrationClosingDate| date : 'dd-MM-yyyy HH:mm' }}</p>
         <div class="flex flex-wrap justify-evenly">
@@ -56,24 +18,25 @@
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Plus de détails
             </button>
-            <button *ngIf="isAdminConnected" routerLink="/event/eventDetails"
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Editer
-        </button>
-            <button *ngIf="isAdminConnected" routerLink="/event/eventDetails"
+            <button *ngIf="isAdminConnected" routerLink="/event/eventEdit/{{event.eventId}}"
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Editer
+            </button>
+            <!-- fonction supprimer à implémenter -->
+            <button *ngIf="isAdminConnected"
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Supprimer
             </button>
-            <button *ngIf="isUserConnected" routerLink="/event/eventDetails"
+            <!-- fonction s'inscrire à implémenter -->
+            <button *ngIf="isUserConnected"
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 S'inscrire
             </button>
             <button *ngIf="isAdminConnected && isUserConnected" routerLink="/event/eventCloture/{{event.eventId}}"
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Clôturer résultat
-        </button> <!-- ce bouton permettra à l'admin de cloturer l'évènement et si l'évènement est clôturé les joueurs pourront cliqué dessus pour avoir le résultat -->
-
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white orange rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Clôturer
+            </button>
+            <!-- ce bouton permettra à l'admin de cloturer l'évènement et si l'évènement est clôturé les joueurs pourront cliqué dessus pour avoir le résultat à mettre en place -->
         </div>
     </div>
-
 </div>

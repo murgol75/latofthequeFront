@@ -7,75 +7,31 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   isOpen = false;
   isAdminConnected: boolean = false;
   isUserConnected: boolean = false;
-  
 
-  constructor(private _authService: AuthService) {  }
-
-    // new Claim(ClaimTypes.Name, user.Nickname),
-    // new Claim(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User") 
-
-    ngOnInit(): void {
-      // const user: string | undefined = undefined;
-      const storedUser: string | null = localStorage.getItem('Token');
-
-      if (storedUser) {
-          const decodedPayload: string = atob(storedUser.split('.')[1]);
-          const parsedPayload: any = JSON.parse(decodedPayload);
-
-          const nom = parsedPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
-          const role = parsedPayload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
-
-          console.log(nom, role);
-
-          if (role === 'Admin') {
-            
-              this.isAdminConnected = true;
-              this.isUserConnected = true;
-
-          }
-          else if (role === 'User') {
-              this.isAdminConnected = false;
-              this.isUserConnected = true;
-
-          }
-          else {
-              this.isAdminConnected = false;
-              this.isUserConnected = false;
-
-          }
-      }}
-  // ngOnInit(): void {  // ancienne version
-  //   console.log(this.connectedUser);
-
-  //   this._authService.$connectedUser.subscribe({
-  //     next: (value) => {
-  //       console.log(this.connectedUser);
-
-  //       console.log(value);
-  //       this.connectedUser = value;
-  //     },
-  //     error: (err) => { },
-  //     complete: () => {
-  //       console.log(this.connectedUser);
-  //       console.log("test")
-  //     }
-  //   });
-
-  // }
-
-
-
-
-
-  toggleAccordion() {
-    this.isOpen = !this.isOpen;
+  constructor(private _authService: AuthService) {
+    this._authService.$userToken.subscribe(u => {
+      if (u) {
+        this.updateUserStatus(u);
+      } else {
+        this.isAdminConnected = false;
+        this.isUserConnected = false;
+      }
+    });
   }
 
-  disconnect():void {
-    this._authService.logout();
+  private updateUserStatus(token: string): void {
+    const decodedPayload: string = atob(token.split('.')[1]);
+    const parsedPayload: any = JSON.parse(decodedPayload);
+    const role = parsedPayload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+    this.isAdminConnected = role === 'Admin';
+    this.isUserConnected = role === 'Admin' || role === 'User';
+  }
+
+  disconnect(): void {
+    this._authService.logout()
   }
 }

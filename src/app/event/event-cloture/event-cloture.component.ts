@@ -27,10 +27,7 @@ export class EventClotureComponent {
         if (!this.eventItem) {
           this._router.navigateByUrl('notfound');
         }
-        console.log(this.eventItem);
-      },
-      error: (err) => { },
-      complete: () => { }
+      }
     }
     );
     this._eventService.getGamesForAnEvent(eventId).subscribe({
@@ -39,11 +36,7 @@ export class EventClotureComponent {
         if (!this.games) {
           this._router.navigateByUrl('notfound');
         }
-        // console.log(this.games);
-
-      },
-      error: (err) => { },
-      complete: () => { }
+      }
     });
 
 

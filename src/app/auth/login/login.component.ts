@@ -18,7 +18,6 @@ export class LoginComponent {
 
   constructor(
     private _fb: FormBuilder,
-    // private _httpClient : HttpClient,
     private _router: Router,
     private _authService: AuthService) {
     this.loginForm = this._fb.group({
@@ -27,7 +26,6 @@ export class LoginComponent {
     });
   }
   ngOnInit(): void {
-    // const user: string | undefined = undefined;
     const storedUser: string | null = localStorage.getItem('Token');
 
     if (storedUser) {
@@ -37,7 +35,6 @@ export class LoginComponent {
         const nom = parsedPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
         const role = parsedPayload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
 
-        console.log(nom, role);
 
         if (role === 'Admin') {
           
@@ -61,7 +58,6 @@ export class LoginComponent {
   connect(): void {
     
     if (!this.loginForm.valid) {
-      console.log('pas valide');
     } else {
       this._authService.login(this.loginForm.value);
     }

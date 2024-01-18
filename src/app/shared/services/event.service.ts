@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EventFull } from '../models/eventFull';
 import {GameLight} from '../models/GameLight'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class EventService {
 
 
   private _baseUrl: string = 'https://localhost:7238/api'
-  private _url: string = 'https://localhost:7238/api/Event/getAllEvents'
-  constructor(private _httpClient: HttpClient) {
+  constructor(private _httpClient: HttpClient,
+    private _router: Router) {
 
    }
 
@@ -23,26 +24,29 @@ export class EventService {
     
     this._httpClient.get<EventLight>(`${this._baseUrl}/Event/EventList`)
     
-    return this._httpClient.get<EventLight[]>(this._url);
+    return this._httpClient.get<EventLight[]>(`${this._baseUrl}/Event/getAllEvents`);
   }
 
+
   getById(id: number): Observable<EventFull> {
-    return this._httpClient.get<EventFull>(`${this._baseUrl}/Event/getEventById/${id}`)
+    return this._httpClient.get<EventFull>
+    (`${this._baseUrl}/Event/getEventById/${id}`)
   }
 
   getGamesForAnEvent(eventId : number): Observable<GameLight[]> {
-    return this._httpClient.get<GameLight[]>(`${this._baseUrl}/Event/getGamesForEvent/${eventId}`)
+    return this._httpClient.get<GameLight[]>
+    (`${this._baseUrl}/Event/getGamesForEvent/${eventId}`)
   }
 
   create(event: Event): Observable<Event> {
-    return this._httpClient.post<Event>(this._url, event);
+    return this._httpClient.post<Event>(`${this._baseUrl}/Event/getAllEvents`, event);
   }
 
   update(id : number, event : Event) : Observable<Event> {
-    return this._httpClient.put<Event>(this._url+id, event)
+    return this._httpClient.put<Event>(`${this._baseUrl}/Event/getAllEvents`+id, event)
   }
 
   delete(id : number) : Observable<Event> {
-    return this._httpClient.delete<Event>(this._url+id);
+    return this._httpClient.delete<Event>(`${this._baseUrl}/Event/getAllEvents`+id);
   }
 }

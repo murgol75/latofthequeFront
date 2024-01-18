@@ -12,10 +12,8 @@ export const connectedGuard: CanActivateFn = (route, state) => {
       return true;
     }
     else {
-      console.log('Guard plantée')
-      console.log(res)
       router.navigateByUrl('auth/login');
-      return true;  // il devrait renvoyer false mais comme j'ai des problèmes dans ma guard, je l'ai mis à true
+      return false;  
     }
   }))
 };

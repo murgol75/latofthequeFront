@@ -3,13 +3,10 @@
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
 
-        <a *ngIf="isAdminConnected" href="/event/eventCreate"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">CREATION</a>
-          <!-- <a href="/event/eventDetails"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">DETAILS (accessible via la liste des events)</a> -->
-        <!-- <a *ngIf="connectedUser?.member?.isAdmin" href="/event/eventEdit"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">EDITION (accessible via la liste des events)</a> -->
-        <a href="/event/eventList" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">LISTE</a>
+        <button *ngIf="isAdminConnected" [routerLink]="['/event/eventCreate']"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">CREATION</button>
+          
+        <button [routerLink]="['/event/eventList']" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">LISTE</button>
       </div>
     </div>
   </nav>

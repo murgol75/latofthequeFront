@@ -20,10 +20,7 @@ export class AppComponent implements OnInit{
 this._authService.$connectedUser.subscribe({
   next : (value) => {
     this.connectedUser = value;
-  },
-  error : (err) => {},
-  complete : () => {console.log(this.connectedUser);
-  console.log("test")}
+  }
 });
 
   }

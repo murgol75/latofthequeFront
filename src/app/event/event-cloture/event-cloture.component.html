@@ -1,6 +1,7 @@
 <div class="flex flex-col items-center mb-8">
     <h2 class="text-4xl font-extrabold dark:text-white mb-4">{{eventItem?.eventName}}</h2>
-    <p class="mb-2">le {{eventItem?.startTime | date : "dd-MM-yyyy"}} de {{eventItem?.startTime | date : "HH:mm"}} à {{eventItem?.endTime | date : "HH:mm"}}</p>
+    <p class="mb-2">le {{eventItem?.startTime | date : "dd-MM-yyyy"}} de {{eventItem?.startTime | date : "HH:mm"}} à
+        {{eventItem?.endTime | date : "HH:mm"}}</p>
     <p class="description text-center max-w-2xl mx-auto">{{eventItem?.eventDescription}}</p>
 </div>
 <div class="flex flex-col items-center mb-8">
@@ -14,12 +15,14 @@
 
 
 <div class="flex flex-col items-center mb-8">
-    <h2 class="text-4xl font-extrabold dark:text-white mb-4">LISTE DES JEUX SELECTIONNES</h2>
+    <h2 class="text-4xl font-extrabold dark:text-white mb-4">
+        LISTE DES JEUX SELECTIONNES</h2>
     <div class="grid grid-cols-3 gap-4">
-        <div *ngFor="let game of games ?? []" class="flex flex-col items-center border p-4 rounded-lg shadow-lg">
+        <div *ngFor="let game of games ?? []" 
+        class="flex flex-col items-center border p-4 rounded-lg shadow-lg">
             <p class="font-bold mb-2">{{game.gameName}}</p>
-            <img src="../assets/gamePictures/{{game.picture}}" alt="{{game.gameName}}" class="max-w-xs max-h-48">
+            <img src="../assets/gamePictures/{{game.picture}}" 
+            alt="{{game.gameName}}" class="max-w-xs max-h-48">
         </div>
     </div>
-
 </div>
