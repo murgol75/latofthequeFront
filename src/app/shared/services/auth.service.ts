@@ -46,13 +46,25 @@ export class AuthService {
     }
   }
 
+
+  
+  
+  // create(register: Register) {
+  //   // Notez qu'il n'y a pas de souscription ici, juste le retour de l'Observable
+  //   return this._http.post(`${this._baseUrl}/Auth/CreatePlayer`, register);
+  // }
+
+
   create(register: Register): void {
     this._http.post(`${this._baseUrl}/Auth/CreatePlayer`, register).subscribe({ //this.registerForm.value envoie un json
       next: response => {
-        this._router.navigate(['/users/login']);
+        this._router.navigate(['auth/login']);
       }
     })
   }
+
+
+
   getLoggedUser(): Observable<User> {
     return this._http.get<User>(`${this._baseUrl}/Auth/login`)
   }

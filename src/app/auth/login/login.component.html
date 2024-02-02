@@ -5,7 +5,7 @@
 
 <div class="flex justify-center" *ngIf="!isUserConnected">
     <form [formGroup]="loginForm" (ngSubmit)="connect()">
-        <p>Connexion</p>
+        <p class="text-6xl">Connexion</p>
         <label>Pseudo</label>
         <input type="text" id="nickname" formControlName="Nickname">
         <label>Mot de passe</label>
@@ -15,4 +15,7 @@
             connecter</button>
         </div>
     </form>
+</div>
+<div>
+    <p *ngIf="!isUserConnected" class="text-xl">Pas encore de compte ? inscris toi <span class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline" [routerLink]="['/auth/createPlayer']" >ici</span></p>
 </div>

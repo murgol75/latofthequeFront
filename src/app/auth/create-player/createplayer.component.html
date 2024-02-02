@@ -1,1 +1,90 @@
-<p>createplayer works!</p>
+<div *ngIf="isUserConnected" class="flex justify-center"><button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="disconnect()">Me
+        Déconnecter</button>
+</div>
+
+<div class="flex justify-center" *ngIf="!isUserConnected">
+    <form class="w-full max-w-sm" [formGroup]="createForm" (ngSubmit)="signIn()">
+        <p class="mb-10 text-6xl">Inscription</p>
+        <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="Nickname">
+                    PSEUDO
+                </label>
+                <span class="text-primary text-red-600"
+                    *ngIf="createForm.get('Nickname')?.touched && createForm.get('Nickname')?.errors?.['required']">Champs
+                    requis</span>
+            </div>
+            <div class="md:w-2/3">
+                <input
+                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    id="Nickname" type="text" placeholder="pseudo" formControlName="Nickname">
+            </div>
+        </div>
+        <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+                    EMAIL
+                </label>
+                <span class="text-primary text-red-600"
+                *ngIf="createForm.get('Email')?.touched && createForm.get('Email')?.errors?.['required']">Champs
+                requis</span>
+                <span class="text-primary text-red-600"
+                *ngIf="createForm.get('Email')?.errors?.['pattern']">format d'email non valide</span>
+            </div>
+            <div class="md:w-2/3">
+                <input
+                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    id="Email" type="email" placeholder="abc@xyz.com" formControlName="Email">
+            </div>
+        </div>
+        <!-- DATE DE NAISSANCE MINIMUM 6 ANS  -->
+        <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+                    DATE DE NAISSANCE
+                </label>
+                <span class="text-primary text-red-600"
+                *ngIf="createForm.get('Birthdate')?.touched && createForm.get('Birthdate')?.errors?.['required']">Champs
+                requis</span>
+                <span class="text-primary text-red-600"
+                *ngIf="createForm.get('Birthdate')?.errors?.['age']">année de naissance {{year}} au plus tard</span>
+
+            </div>
+            <div class="md:w-2/3">
+                <input
+                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    id="Birthdate" type="date" formControlName="Birthdate">
+            </div>
+        </div>
+        <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="HashPwd">
+                    MOT DE PASSE
+                </label>
+                <span class="text-primary text-red-600"
+                *ngIf="createForm.get('HashPwd')?.touched && createForm.get('HashPwd')?.errors?.['required']">Champs
+                requis</span>
+                <span class="text-primary text-red-600"
+                *ngIf="createForm.get('HashPwd')?.errors?.['pattern']">min 8 caractères, 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spsécial</span>
+
+            </div>
+            <div class="md:w-2/3">
+                <input
+                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    id="HashPwd" type="Password" placeholder="mot de passe" formControlName="HashPwd">
+            </div>
+        </div>
+
+        <div class="md:flex md:items-center">
+            <div class="md:w-1/3"></div>
+            <div class="md:w-2/3">
+                <button
+                    class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                    type="submit">
+                    S'enregistrer
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

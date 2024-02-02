@@ -58,8 +58,10 @@ export class LoginComponent {
   connect(): void {
     
     if (!this.loginForm.valid) {
+      // afficher un message non valide genre pseudo et/ou mot de passe incorrect
     } else {
       this._authService.login(this.loginForm.value);
+      
     }
   }
 
