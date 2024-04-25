@@ -58,7 +58,8 @@ export class AuthService {
   create(register: Register): void {
     this._http.post(`${this._baseUrl}/Auth/CreatePlayer`, register).subscribe({ //this.registerForm.value envoie un json
       next: response => {
-        this._router.navigate(['auth/login']);
+        // if faut afficher un message qui dit "Votre compte a bien été créé.  Toutes vos préférences ont été mises à 3, vous pouvez vous connecter et aller sur votre profil pour modifier... "
+        // this._router.navigate(['auth/login']);
       }
     })
   }
@@ -79,7 +80,7 @@ export class AuthService {
         this._$connectedUser.next(res.member)
 
         this._$userToken.next(res.token);
-        this._router.navigate(['event/eventList']);
+        this._router.navigate(['player/playerDetails']);
       }
     });
   };

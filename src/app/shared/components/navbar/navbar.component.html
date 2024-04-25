@@ -15,6 +15,8 @@
         CONNECTER</button>
       <button *ngIf="isUserConnected" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" (click)="disconnect()">SE
           DECONNECTER</button>
+      <button *ngIf="isUserConnected" [routerLink]="['/player/playerDetails']"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">MON PROFIL</button>
        
     </div>
   </div>

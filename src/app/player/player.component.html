@@ -1,5 +1,19 @@
+<br>
+<nav class="bg-gray-800">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div class="relative flex h-16 items-center justify-between">
+
+        <button [routerLink]="['player/playerDetails']"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">CONSULTER</button>
+          
+        <button [routerLink]="['player/playerEdit']" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">MODIFIER</button>
+      </div>
+    </div>
+  </nav>
+
+
 <p *ngIf="!isUserConnected">Bienvenue étranger</p>
 <p *ngIf="isUserConnected">Bienvenue {{nickname}}</p>
-<button *ngIf="isUserConnected" [routerLink]="['player/playerEdit']">Mettre à jour votre profil</button>
+
 <!-- <p>je ne sais pas que mettre sur cette page, surement que je ne l'utiliserai pas</p> -->
 <router-outlet></router-outlet>

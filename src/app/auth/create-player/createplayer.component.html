@@ -87,4 +87,11 @@
             </div>
         </div>
     </form>
+    <div *ngIf="showSuccessMessage" class="flex justify-center mt-4">
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded w-full max-w-sm" role="alert">
+            <p class="text-sm">{{ successMessage }}</p>
+            <p class="text-sm">Connecte toi <span class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline" [routerLink]="['/auth/login']" >ici</span></p>
+        </div>
+    </div>
+    
 </div>

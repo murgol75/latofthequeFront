@@ -15,6 +15,8 @@ export class CreateplayerComponent {
   isUserConnected: boolean = false;
   actualYear : number = new Date().getFullYear();
   year : number = this.actualYear-7;
+  showSuccessMessage: boolean = false;
+  successMessage: string = "Ton compte a bien été créé. Toutes tes préférences ont été mises à 3, tu peux te connecter et aller sur ton profil pour les modifier!";
 
   constructor(
   private _fb: FormBuilder,
@@ -65,7 +67,9 @@ export class CreateplayerComponent {
       console.log('Formulaire invalide');
     } else {
       console.log(this.createForm.value);
+      this.showSuccessMessage = true;
       this._authService.create(this.createForm.value);
+      
     }
   }
   disconnect():void {
