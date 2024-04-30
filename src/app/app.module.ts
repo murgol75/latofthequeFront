@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,10 @@ import { NotfoundComponent } from './shared/components/notfound/notfound.compone
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthTokenInterceptor } from './shared/interceptors/auth-token.interceptor';
+import { registerLocaleData } from '@angular/common';
+import localeFrBe from '@angular/common/locales/fr-BE';
+
+registerLocaleData(localeFrBe);
 
 @NgModule({
   declarations: [
@@ -26,9 +30,10 @@ import { AuthTokenInterceptor } from './shared/interceptors/auth-token.intercept
   exports: [
     ReactiveFormsModule
 ],
-  providers: [{
-    provide : HTTP_INTERCEPTORS, useClass : AuthTokenInterceptor, multi : true
-  }],
+  providers: [
+    {provide : HTTP_INTERCEPTORS, useClass : AuthTokenInterceptor, multi : true},
+    {provide: LOCALE_ID, useValue: 'fr-BE'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

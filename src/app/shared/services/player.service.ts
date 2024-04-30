@@ -24,7 +24,7 @@ export class PlayerService {
   }
 
   getById(id: number): Observable<User> {
-    return this._httpClient.get<User>(`${this._baseUrl}/Player/getAllPlayers`+id)
+    return this._httpClient.get<User>(`${this._baseUrl}/Player/getPlayerById/${id}`);
   }
 
   create(user: User): Observable<User> {

@@ -76,6 +76,7 @@ export class AuthService {
 
         localStorage.setItem('Token', res.token);
         localStorage.setItem('Player', JSON.stringify(res.member));
+        localStorage.setItem('Id', res.member.playerId.toString());
 
         this._$connectedUser.next(res.member)
 

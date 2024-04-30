@@ -1,6 +1,69 @@
-<p>player-details works!</p>
 <!-- <p>je ne sais pas quoi mettre dans cette page, surement que je la supprimerai</p> -->
-<!-- <p>En vrai je mes les infos ici et on aura une page pour modifier</p> -->
+<!-- <p>En vrai je mets les infos ici et on aura une page pour modifier</p> -->
+<!-- 
+<p>l'idée c'est d'afficher le profil du joueur ici et une autre page pour le modifier</p>
+<p>eventuellement faire une liste déroulante pour pas charger toute la page</p>
+<ul>
+    PROFIL
+    <li>pseudo</li>
+    <li>email</li>
+    <li>date de naissance</li>
+</ul>
+<br>
+<ul>
+    EVENEMENTS
+    <li>la liste des évènements auquel il est inscrit et qui n'ont pas encore eu lieu</li>
+    <li>la liste des évènements auquel il est inscrit et qui ont déjà eu lieu</li>
+    <li>la liste des évènements qu'il a créé</li>
+    POUR MODIFIER, IL VAUT MIEUX QU'IL AILLE DANS LA SECTION EVENEMENTS
+</ul>
+<br>
+<ul>
+    MOTS CLES
+    <li>la liste des préférences mot clé</li>
+</ul>
+<br>
+<ul>
+    THEMES
+    <li>la liste des préférences themes</li>
+</ul>
+<br>
+<ul>
+    JEUX
+    <li>la liste de ses jeux</li>
+    Cliquer sur un jeu pour y avoir accès, on ne peut pas le modifier (admin seulement)
+    Pour ajouter 1 jeu, on ne peut le faire que dans la section jeux
+</ul> -->
 
 
 
+<div class="flex flex-col items-center mb-8">
+    <h2>Informations</h2>
+    <p class="mb-2">Pseudo : {{playerItem?.nickname}}</p>
+    <p class="mb-2">adresse mail : {{playerItem?.email}}</p>
+    <p class="mb-2">date de naissance : {{playerItem?.birthdate | date : 'dd MMMM yyyy'}}</p>
+</div>
+<div class="flex flex-col items-center mb-8">
+    <h2>EVENEMENTS</h2>
+    <!-- la liste des évènements auquel il est inscrit et qui n'ont pas encore eu lieu
+    la liste des évènements auquel il est inscrit et qui ont déjà eu lieu
+    la liste des évènements qu'il a créé
+    POUR MODIFIER, IL VAUT MIEUX QU'IL AILLE DANS LA SECTION EVENEMENTS -->
+</div>
+
+<div class="flex flex-col items-center mb-8">
+    <h2>PREFERENCES STYLE</h2>
+    <!-- la liste des préférences mot clé-->
+</div>
+
+<div class="flex flex-col items-center mb-8">
+    <h2>PREFERENCES THEMES</h2>
+    <!-- la liste des préférences themes-->
+</div>
+
+<div class="flex flex-col items-center mb-8">
+    <h2>LISTE DE MES JEUX</h2>
+    <!-- <li>la liste de ses jeux</li>
+    Cliquer sur un jeu pour y avoir accès, on ne peut pas le modifier (admin seulement)
+    Pour ajouter 1 jeu, on ne peut le faire que dans la section jeux -->
+</div>

@@ -4,7 +4,8 @@ import { PlayerDetailsComponent } from './player-details/player-details.componen
 import { PlayerEditComponent } from './player-edit/player-edit.component';
 
 const routes: Routes = [
-{ path : "playerDetails", component : PlayerDetailsComponent},
+  { path : "playerDetails", component : PlayerDetailsComponent},
+  { path : "playerDetails/:id", component : PlayerDetailsComponent},
 { path : "playerEdit", component : PlayerEditComponent},];
 
 @NgModule({
