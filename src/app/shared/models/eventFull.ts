@@ -5,5 +5,6 @@ export interface EventFull {
     registrationClosingDate : string;
     eventName : string;
     eventDescription : string;
-    participatingPlayers : string[]
+    participatingPlayers : string[];
+    fkOrganizerId : number;
 }

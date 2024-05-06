@@ -76,12 +76,12 @@ export class AuthService {
 
         localStorage.setItem('Token', res.token);
         localStorage.setItem('Player', JSON.stringify(res.member));
-        localStorage.setItem('Id', res.member.playerId.toString());
+        // localStorage.setItem('Id', res.member.playerId.toString());
 
         this._$connectedUser.next(res.member)
 
         this._$userToken.next(res.token);
-        this._router.navigate(['player/playerDetails']);
+        this._router.navigate(['player']);
       }
     });
   };

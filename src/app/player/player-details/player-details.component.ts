@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/shared/models/User';
+import { GameListUser, PlayerGame } from 'src/app/shared/models/GameList';
+import { KeywordList } from 'src/app/shared/models/KeywordList';
+import { ThemeList } from 'src/app/shared/models/ThemeList';
+import { UserFull } from 'src/app/shared/models/UserFull';
 import { UserReceived } from 'src/app/shared/models/UserReceived';
 import { EventLight } from 'src/app/shared/models/eventLight';
 import { PlayerService } from 'src/app/shared/services/player.service';
@@ -12,27 +15,55 @@ import { PlayerService } from 'src/app/shared/services/player.service';
 })
 export class PlayerDetailsComponent implements OnInit {
 
-  playerItem: User | undefined;
+  playerItem: UserFull | undefined;
   connectedUser: UserReceived | undefined;
   isAdminConnected: boolean = false;
   isUserConnected: boolean = false;
+  eventListFutur: EventLight[] = [];
+  eventListPast: EventLight[] = [];
+  eventListOwner: EventLight[] = [];
+  keywordList: KeywordList[] = [];
+  themeList: ThemeList[] = [];
+  gameList: GameListUser[] = [];
+  showInfo = false;
+  showEvents = false;
+  showEventFutur = false;
+  showEventPast = false;
+  showEventOwner = false;
+  showKeywords = false;
+  showThemes = false;
+  showGames = false;
 
-  constructor(private _activeRoute : ActivatedRoute,
-              private _playerService : PlayerService,
-              private _router : Router) {
-                let playerId =+this._activeRoute.snapshot.params["id"];
-                this._playerService.getById(playerId).subscribe({
-                  next: (value) => {
-                    this.playerItem = value;
-                    if (!this.playerItem) {
-                      this._router.navigateByUrl('notfound');
-                    }
-                  }
-                });
+
+
+
+
+  constructor(private _activeRoute: ActivatedRoute,
+    private _playerService: PlayerService,
+    private _router: Router) {
+    // récupérer l'ID du joueur
+    let playerId = +this._activeRoute.snapshot.params["id"];
+
+    this._playerService.getById(playerId).subscribe({
+      next: (value) => {
+        this.playerItem = value;
+        if (!this.playerItem) {
+          this._router.navigateByUrl('notfound');
+        }
+        else {
+          this.CreateEventListFutur(this.playerItem);
+          this.CreateEventListPast(this.playerItem);
+          this.CreateEventListOwner(this.playerItem);
+          this.CreateKeywordList(this.playerItem);
+          this.CreateThemeList(this.playerItem);
+          this.CreateGameList(this.playerItem);
+        }
+      }
+    });
   }
 
   ngOnInit(): void {
-    
+
     const storedUser: string | null = localStorage.getItem('Token');
 
     if (storedUser) {
@@ -56,6 +87,82 @@ export class PlayerDetailsComponent implements OnInit {
       }
     }
   }
-  
 
+toggleInfo() : void {
+  this.showInfo = !this.showInfo;
+}
+toggleEvents() : void {
+  this.showEvents = !this.showEvents;
+}
+toggleEventFutur() : void {
+  this.showEventFutur = !this.showEventFutur;
+}
+toggleEventPast() : void {
+  this.showEventPast = !this.showEventPast;
+}
+toggleEventOwner() : void {
+  this.showEventOwner = !this.showEventOwner;
+}
+toggleKeywords() : void {
+  this.showKeywords = !this.showKeywords;
+}
+toggleThemes() : void {
+  this.showThemes = !this.showThemes;
+}
+toggleGames() : void {
+  this.showGames = !this.showGames;
+}
+
+
+
+
+  CreateEventListFutur(playerItem: UserFull): void {
+    const currentDate = new Date();
+    this.eventListFutur = playerItem.events.filter(events => new Date(events.startTime) >= currentDate);
+  }
+
+  CreateEventListPast(playerItem: UserFull): void {
+    const currentDate = new Date();
+    this.eventListPast = playerItem.events.filter(events => new Date(events.startTime) < currentDate);
+  }
+
+  CreateEventListOwner(playerItem: UserFull): void {
+    this.eventListOwner = playerItem.events.filter(events => events.fkOrganizerId === playerItem.playerId);
+    // console.log(playerItem.events);
+    // console.log(this.eventListOwner);
+  }
+  CreateKeywordList(playerItem: UserFull): void {
+    if (playerItem && playerItem.playerKeywords) {
+      this.keywordList = playerItem.playerKeywords.map(keywordItem => ({
+        keywordName: keywordItem.fkKeyword.keywordName,
+        keywordNote: keywordItem.keywordNote
+      }));
+    } else {
+      console.warn("La propriété `playerKeywords` est manquante ou vide dans l'objet `playerItem`.");
+      this.keywordList = [];
+    }
+  };
+
+  CreateThemeList(playerItem: UserFull): void {
+    if (playerItem && playerItem.playerThemes) {
+      this.themeList = playerItem.playerThemes.map(themeItem => ({
+        themeName: themeItem.fkTheme.themeName,
+        themeNote: themeItem.themeNote
+      }));
+    } else {
+      console.warn("La propriété `playerTheme` est manquante ou vide dans l'objet `playerItem`.");
+      this.keywordList = [];
+    }
+  };
+
+  CreateGameList(playerItem: UserFull): void {
+    console.log(playerItem)
+    console.log(playerItem.playerGames)
+    this.gameList = playerItem.playerGames.map(gameItem => ({
+      gameId : gameItem.fkGame.gameId,
+      gameName: gameItem.fkGame.gameName,
+    }))
+    console.log(this.gameList)
+  };
+  
 }

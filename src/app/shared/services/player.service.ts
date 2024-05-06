@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/User';
+import { UserFull } from '../models/UserFull';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,8 @@ export class PlayerService {
     return this._httpClient.get<User[]>(`${this._baseUrl}/Player/getAllPlayers`);
   }
 
-  getById(id: number): Observable<User> {
-    return this._httpClient.get<User>(`${this._baseUrl}/Player/getPlayerById/${id}`);
+  getById(id: number): Observable<UserFull> {
+    return this._httpClient.get<UserFull>(`${this._baseUrl}/Player/getPlayerById/${id}`);
   }
 
   create(user: User): Observable<User> {
