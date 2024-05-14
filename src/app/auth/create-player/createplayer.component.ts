@@ -14,7 +14,7 @@ export class CreateplayerComponent {
   isAdminConnected: boolean = false;
   isUserConnected: boolean = false;
   actualYear : number = new Date().getFullYear();
-  year : number = this.actualYear-7;
+  acceptedYear : number = this.actualYear-7;
   showSuccessMessage: boolean = false;
   successMessage: string = "Ton compte a bien été créé. Toutes tes préférences ont été mises à 3, tu peux te connecter et aller sur ton profil pour les modifier!";
 

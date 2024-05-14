@@ -40,27 +40,7 @@ export class PlayerDetailsComponent implements OnInit {
 
   constructor(private _activeRoute: ActivatedRoute,
     private _playerService: PlayerService,
-    private _router: Router) {
-    // récupérer l'ID du joueur
-    let playerId = +this._activeRoute.snapshot.params["id"];
-
-    this._playerService.getById(playerId).subscribe({
-      next: (value) => {
-        this.playerItem = value;
-        if (!this.playerItem) {
-          this._router.navigateByUrl('notfound');
-        }
-        else {
-          this.CreateEventListFutur(this.playerItem);
-          this.CreateEventListPast(this.playerItem);
-          this.CreateEventListOwner(this.playerItem);
-          this.CreateKeywordList(this.playerItem);
-          this.CreateThemeList(this.playerItem);
-          this.CreateGameList(this.playerItem);
-        }
-      }
-    });
-  }
+    private _router: Router) {  }
 
   ngOnInit(): void {
 
@@ -86,6 +66,28 @@ export class PlayerDetailsComponent implements OnInit {
         this.isUserConnected = false;
       }
     }
+        // récupérer l'ID du joueur
+        let playerId = +this._activeRoute.snapshot.params["id"];
+
+        this._playerService.getById(playerId).subscribe({
+          next: (value) => {
+            this.playerItem = value;
+            if (!this.playerItem) {
+              this._router.navigateByUrl('notfound');
+            }
+            else {
+              this.CreateEventListFutur(this.playerItem);
+              this.CreateEventListPast(this.playerItem);
+              this.CreateEventListOwner(this.playerItem);
+              this.CreateKeywordList(this.playerItem);
+              this.CreateThemeList(this.playerItem);
+              this.CreateGameList(this.playerItem);
+            }
+          }
+        });
+    
+
+
   }
 
 toggleInfo() : void {

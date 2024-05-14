@@ -8,19 +8,11 @@ import { UserFull } from '../models/UserFull';
   providedIn: 'root'
 })
 export class PlayerService {
-
-
-
-
   private _baseUrl: string = 'https://localhost:7238/api'
-  constructor(private _httpClient: HttpClient) {
-
-   }
+  constructor(private _httpClient: HttpClient) {}
 
   getAll(): Observable<User[]> {
-    
     this._httpClient.get<User>(`${this._baseUrl}/Player/getAllPlayers`)
-    
     return this._httpClient.get<User[]>(`${this._baseUrl}/Player/getAllPlayers`);
   }
 

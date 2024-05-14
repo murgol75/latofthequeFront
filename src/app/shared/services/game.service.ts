@@ -9,19 +9,11 @@ import { Game } from '../models/Game';
   providedIn: 'root'
 })
 export class GameService {
-
-
-
-
   private _baseUrl: string = 'https://localhost:7238/api'
-  constructor(private _httpClient: HttpClient) {
-
-   }
+  constructor(private _httpClient: HttpClient) {}
 
   getAll(): Observable<GameList[]> {
-    
     this._httpClient.get<GameList>(`${this._baseUrl}/Game/`)
-    
     return this._httpClient.get<GameList[]>(`${this._baseUrl}/Game/`);
   }
 
@@ -40,5 +32,4 @@ export class GameService {
   delete(id : number) : Observable<Game> {
     return this._httpClient.delete<Game>(`${this._baseUrl}/Game/`+id);
   }
-
 }

@@ -10,23 +10,14 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class EventService {
-
-
-
-
   private _baseUrl: string = 'https://localhost:7238/api'
   constructor(private _httpClient: HttpClient,
-    private _router: Router) {
-
-   }
+    private _router: Router) {}
 
   getAll(): Observable<EventLight[]> { // ajouter le bool registration close pour faire apparaitre le bouton resultat pour les joueurs
-    
     this._httpClient.get<EventLight>(`${this._baseUrl}/Event/EventList`)
-    
     return this._httpClient.get<EventLight[]>(`${this._baseUrl}/Event/getAllEvents`);
   }
-
 
   getById(id: number): Observable<EventFull> {
     return this._httpClient.get<EventFull>

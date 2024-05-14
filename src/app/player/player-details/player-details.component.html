@@ -1,126 +1,161 @@
 <div class="flex flex-col items-center space-y-8 mb-8">
-    <div class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
-        <h2 class="text-2xl font-bold mb-4 cursor-pointer" (click)="toggleInfo()">INFORMATIONS</h2>
-        <table *ngIf="showInfo" class="w-full border-collapse border border-gray-200 rounded-lg">
-            <tbody>
-                <tr class="border-b border-gray-200">
-                    <td class="font-semibold p-2">PSEUDO</td>
-                    <td>{{playerItem?.nickname}}</td>
-                </tr>
-                <tr class="border-b border-gray-200">
-                    <td class="font-semibold p-2">EMAIL</td>
-                    <td>{{playerItem?.email}}</td>
-                </tr>
-                <tr class="border-b border-gray-200">
-                    <td class="font-semibold p-2">NAISSANCE</td>
-                    <td>{{playerItem?.birthdate | date: 'dd MMMM yyyy'}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <section>
+        <div class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
+            <h2 *ngIf="showInfo" class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleInfo()">👇INFORMATIONS
+            </h2>
+            <h2 *ngIf="!showInfo" class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleInfo()">👉INFORMATIONS
+            </h2>
+            <table *ngIf="showInfo" class="w-full border-collapse border border-gray-200 rounded-lg">
+                <tbody>
+                    <tr class="border-b border-gray-200">
+                        <td class="font-semibold p-2">PSEUDO</td>
+                        <td>{{playerItem?.nickname}}</td>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                        <td class="font-semibold p-2">EMAIL</td>
+                        <td>{{playerItem?.email}}</td>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                        <td class="font-semibold p-2">NAISSANCE</td>
+                        <td>{{playerItem?.birthdate | date: 'dd MMMM yyyy'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-    <div class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
-        <h2 class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleEvents()">EVENEMENTS</h2>
-        <p class="bg-red-700">à prévoir : cliquer sur l'évènement pour avoir les détails</p>
-    </div>
+    <section>
 
-    <div *ngIf="showEvents" class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
-        <h3 class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleEventFutur()">Vous participerez à</h3>
-        <table *ngIf="showEventFutur" class="w-full border-collapse border border-gray-200 rounded-lg">
-            <thead>
-                <tr class="border-b border-gray-200">
-                    <th>Evènement</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="border-b border-gray-200" *ngFor="let event of eventListFutur">
-                    <td>{{event.eventName}}</td>
-                    <td>{{event.startTime | date : 'dd-MM-yyyy' }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <div class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
+            <h2 *ngIf="showEvents" class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleEvents()">👇EVENEMENTS
+            </h2>
+            <h2 *ngIf="!showEvents" class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleEvents()">👉EVENEMENTS
+            </h2>
+            <p class="bg-red-700">à prévoir : cliquer sur l'évènement pour avoir les détails</p>
+        </div>
 
-    <div *ngIf="showEvents" class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
-        <h3 class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleEventPast()">Vous avez participeré à</h3>
-        <table *ngIf="showEventPast" class="w-full border-collapse border border-gray-200 rounded-lg">
-            <thead>
-                <tr class="border-b border-gray-200">
-                    <th>Evènement</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="border-b border-gray-200" *ngFor="let event of eventListPast">
-                    <td>{{event.eventName}}</td>
-                    <td>{{event.startTime | date : 'dd-MM-yyyy' }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <div *ngIf="showEvents" class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
+            <h3 *ngIf="showEventFutur" class="text-2xl font-bold mb-4 cursor-pointer" (click)="toggleEventFutur()">
+                👇Vous participerez à</h3>
+            <h3 *ngIf="!showEventFutur" class="text-2xl font-bold mb-4 cursor-pointer" (click)="toggleEventFutur()">
+                👉Vous participerez à</h3>
+            <table *ngIf="showEventFutur" class="w-full border-collapse border border-gray-200 rounded-lg">
+                <thead>
+                    <tr class="border-b border-gray-200">
+                        <th>Evènement</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-200" *ngFor="let event of eventListFutur">
+                        <td>{{event.eventName}}</td>
+                        <td>{{event.startTime | date : 'dd-MM-yyyy' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <div *ngIf="showEvents" class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
-        <h3 class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleEventOwner()">vos évènements créés</h3>
-        <table *ngIf="showEventOwner" class="w-full border-collapse border border-gray-200 rounded-lg">
-            <thead>
-                <tr class="border-b border-gray-200">
-                    <th>Evènement</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="border-b border-gray-200" *ngFor="let event of eventListOwner">
-                    <td>{{event.eventName}}</td>
-                    <td>{{event.startTime | date : 'dd-MM-yyyy' }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <div *ngIf="showEvents" class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
+            <h3 *ngIf="showEventPast" class="text-2xl font-bold mb-4 cursor-pointer" (click)="toggleEventPast()">👇Vous
+                avez participé à</h3>
+            <h3 *ngIf="!showEventPast" class="text-2xl font-bold mb-4 cursor-pointer" (click)="toggleEventPast()">👉Vous
+                avez participé à</h3>
+            <table *ngIf="showEventPast" class="w-full border-collapse border border-gray-200 rounded-lg">
+                <thead>
+                    <tr class="border-b border-gray-200">
+                        <th>Evènement</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-200" *ngFor="let event of eventListPast">
+                        <td>{{event.eventName}}</td>
+                        <td>{{event.startTime | date : 'dd-MM-yyyy' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <div class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
-        <h2 class="text-2xl font-bold mb-4 cursor-pointer" (click)="toggleKeywords()">PREFERENCES STYLE</h2>
-        <table *ngIf="showKeywords" class="w-full border-collapse border border-gray-200 rounded-lg">
-            <thead>
-                <tr class="border-b border-gray-200">
-                    <th>Style</th>
-                    <th>Votre note</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="border-b border-gray-200" *ngFor="let keywordItem of keywordList">
-                    <td>{{keywordItem.keywordName}}</td>
-                    <td>{{keywordItem.keywordNote}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <div *ngIf="showEvents" class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
+            <h3 *ngIf="showEventOwner" class="text-2xl font-bold mb-4 cursor-pointer" (click)="toggleEventOwner()">👇vos
+                évènements créés</h3>
+            <h3 *ngIf="!showEventOwner" class="text-2xl font-bold mb-4 cursor-pointer" (click)="toggleEventOwner()">
+                👉vos évènements créés</h3>
+            <table *ngIf="showEventOwner" class="w-full border-collapse border border-gray-200 rounded-lg">
+                <thead>
+                    <tr class="border-b border-gray-200">
+                        <th>Evènement</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-200" *ngFor="let event of eventListOwner">
+                        <td>{{event.eventName}}</td>
+                        <td>{{event.startTime | date : 'dd-MM-yyyy' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-    <div class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
-        <h2 class="text-2xl font-bold mb-4 cursor-pointer" (click)="toggleThemes()">PREFERENCES THEMES</h2>
-        <table *ngIf="showThemes" class="w-full border-collapse border border-gray-200 rounded-lg">
-            <thead>
-                <tr class="border-b border-gray-200">
-                    <th>Theme</th>
-                    <th>Votre note</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="border-b border-gray-200" *ngFor="let themeItem of themeList">
-                    <td>{{themeItem.themeName}}</td>
-                    <td>{{themeItem.themeNote}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <section>
+        <div class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
+            <h2 *ngIf="showKeywords" class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleKeywords()">
+                👇PREFERENCES STYLE</h2>
+            <h2 *ngIf="!showKeywords" class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleKeywords()">
+                👉PREFERENCES STYLE</h2>
+            <table *ngIf="showKeywords" class="w-full border-collapse border border-gray-200 rounded-lg">
+                <thead>
+                    <tr class="border-b border-gray-200">
+                        <th>Style</th>
+                        <th>Votre note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-200" *ngFor="let keywordItem of keywordList">
+                        <td>{{keywordItem.keywordName}}</td>
+                        <td>{{keywordItem.keywordNote}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-    <div class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg space-y-4">
-        <h2 class="text-2xl font-bold" (click)="toggleGames()">LISTE DE MES JEUX</h2>
-        <p class="bg-red-700 text-white p-2 rounded-md">à prévoir : cliquer sur le jeu pour avoir les détails</p>
-        <ol *ngIf="showGames" class="list-decimal list-inside w-full">
-            <li *ngFor="let game of playerItem?.playerGames"
-                class="p-2 border-b border-gray-200 hover:bg-gray-100 cursor-pointer">{{game.fkGame.gameName}}</li>
-        </ol>
-    </div>
+    <section>
+        <div class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg">
+            <h2 *ngIf="showThemes" class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleThemes()">👇PREFERENCES
+                THEMES</h2>
+            <h2 *ngIf="!showThemes" class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleThemes()">
+                👉PREFERENCES THEMES</h2>
+            <table *ngIf="showThemes" class="w-full border-collapse border border-gray-200 rounded-lg">
+                <thead>
+                    <tr class="border-b border-gray-200">
+                        <th>Theme</th>
+                        <th>Votre note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-200" *ngFor="let themeItem of themeList">
+                        <td>{{themeItem.themeName}}</td>
+                        <td>{{themeItem.themeNote}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <div class="flex flex-col items-center w-full max-w-xl border rounded-lg p-4 shadow-lg space-y-4">
+            <h2 *ngIf="showGames" class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleGames()">👇LISTE DE MES
+                JEUX</h2>
+            <h2 *ngIf="!showGames" class="text-3xl font-bold mb-4 cursor-pointer" (click)="toggleGames()">👉LISTE DE MES
+                JEUX</h2>
+            <p class="bg-red-700 text-white p-2 rounded-md">à prévoir : cliquer sur le jeu pour avoir les détails</p>
+            <ol *ngIf="showGames" class="list-decimal list-inside w-full">
+                <li *ngFor="let game of playerItem?.playerGames"
+                    class="p-2 border-b border-gray-200 hover:bg-gray-100 cursor-pointer">{{game.fkGame.gameName}}</li>
+            </ol>
+        </div>
+    </section>
 
 </div>
