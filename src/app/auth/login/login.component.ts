@@ -20,9 +20,13 @@ export class LoginComponent {
     private _fb: FormBuilder,
     private _router: Router,
     private _authService: AuthService) {
+    // this.loginForm = this._fb.group({
+    //   Nickname: [null, Validators.required],
+    //   Password: [null, Validators.required]
+    // });
     this.loginForm = this._fb.group({
-      Nickname: [null, Validators.required],
-      Password: [null, Validators.required]
+      Nickname: ['lapinou', Validators.required],
+      Password: ['Test1234$', Validators.required]
     });
   }
   ngOnInit(): void {
@@ -64,6 +68,20 @@ export class LoginComponent {
       
     }
   }
+
+  // pour me simplifier la vie la méthode que j'utilise au-dessus me connecte d'office en tant que murgol, ça, c'est la méthode officielle
+  // connect(): void {
+    
+  //   if (!this.loginForm.valid) {
+  //     // afficher un message non valide genre pseudo et/ou mot de passe incorrect
+  //   } else {
+  //     this._authService.login(this.loginForm.value);
+      
+  //   }
+  // }
+
+
+
 
   disconnect():void {
     this._authService.logout();

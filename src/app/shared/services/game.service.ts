@@ -13,9 +13,10 @@ export class GameService {
   constructor(private _httpClient: HttpClient) {}
 
   getAll(): Observable<GameList[]> {
-    this._httpClient.get<GameList>(`${this._baseUrl}/Game/`)
-    return this._httpClient.get<GameList[]>(`${this._baseUrl}/Game/`);
+    // this._httpClient.get<GameList>(`${this._baseUrl}/Game/`)
+    return this._httpClient.get<GameList[]>(`${this._baseUrl}/Game/getAllGames`);
   }
+
 
   getById(id: number): Observable<Game> {
     return this._httpClient.get<Game>(`${this._baseUrl}/Game/`+id)

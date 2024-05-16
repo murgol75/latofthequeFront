@@ -16,16 +16,33 @@ export class GameComponent {
   ngOnInit() {
     this.loadGames();
   }
-  loadGames() {
+  loadGames() { 
     this._gameService.getAll().subscribe({
       next: (games) => {
         this.gameList = games;
+        console.log(this.gameList)
       },
       error: (err) => {
-        console.error('Error loading players', err);
+        console.error('Error loading games', err);
       }
     });
   }
+
+  onGameClick(id: number) {
+    // faire la méthode pour qu'il se rende à la page détail de jeu avec le bon ID
+  }
+
+  // loadPlayers() {
+  //   this._playerService.getAll().subscribe({
+  //     next: (players) => {
+  //       this.playerList = players;
+  //     },
+  //     error: (err) => {
+  //       console.error('Error loading players', err);
+  //     }
+  //   });
+  // }
+
 
   delete(id : number) {
     this._gameService.delete(id).subscribe({
