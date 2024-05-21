@@ -11,7 +11,37 @@ import { PlayerService } from 'src/app/shared/services/player.service';
 })
 export class GameListComponent {
   
-    constructor() {
-    }
+  gameList : GameList[] = [];
+  
+  constructor(private _gameService : GameService) {
+  }
+
+  ngOnInit() {
+    this.loadGames();
+  }
+  loadGames() { 
+    this._gameService.getAll().subscribe({
+      next: (games) => {
+        this.gameList = games;
+        // console.log(this.gameList)
+      },
+      error: (err) => {
+        console.error('Error loading games', err);
+      }
+    });
+  }
+
+  
+
+  delete(id : number) {
+    this._gameService.delete(id).subscribe({
+      next:() => {
+        this.loadGames();
+      },
+      error:(err) => {
+        console.error('je n\'ai pu supprimer l\'évènement', err);
+      }
+    });
+  }
   
   }

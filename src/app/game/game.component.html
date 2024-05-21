@@ -1,47 +1,21 @@
-<!-- <p>ici n'importe qui pourra voir la liste des jeux avec possibilité de filtre</p> -->
-<!-- <p>rendre le jeu clicable pour avoir les détails du jeu</p> -->
+<br>
+<nav class="bg-gray-800">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+        <button [routerLink]="['gameList']"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">LISTE DES JEUX</button>
+        <button class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">AJOUTER UN JEU</button>
+    </div>
+  </div>
+</nav>
+<!-- A mettre dans un component type Game-accueil 
+    <div class="flex justify-center items-center">
+    <img class="justify-center size-4/5" src="../../../../assets/lotsOfGames.jpg" alt="Tof dans sa ludotheque">
+</div> -->
+
+
+
+
 
 
 <router-outlet></router-outlet>
-
-<div class="flex flex-col items-center v-screen mb-4">
-    <h2 class="text-4xl font-extrabold dark:text-white">Voici la liste complete des jeux répertoriés sur cette application</h2>
-</div>
-    <div>
-    <div class="flex flex-col items-center w-screen mb-4">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-                <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        NOM
-                    </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        IMAGE
-                    </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                         JOUEURS
-                    </th>
-                    <!-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        JOUEURS MAXIMUM
-                   </th> -->
-                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        DUREE MOYENNE
-                    </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        AGE MINIMUM
-                    </th>
-                </tr>
-            </thead>
-            
-            <tbody class="bg-white divide-y divide-gray-200">
-                <tr *ngFor="let game of gameList">
-                    <td class="px-6 py-4 whitespace-nowrap"><a href="#" (click)="onGameClick(game.gameId)">{{ game.gameName }}</a></td>
-                    <td class="px-6 py-4 whitespace-nowrap"><img src="../../assets/gamePictures/{{game.picture}}" alt="{{game.gameName}}" class="max-w-xs max-h-48"></td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{game.playersMin}} - {{game.playersMax}} joueurs</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{game.averageDuration}} minutes</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{game.ageMin}} ans</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
