@@ -18,12 +18,16 @@
                 <li class="text-gray-700 text-2xl ml-24" *ngFor="let key of game?.fkKeywords">🎲{{key}}</li>
             </ul>
         </div>
-            <div>
+            <div *ngIf="videoLinkOk">
                 <iframe width="560" height="315" [src]="videoLink"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
+            <div *ngIf="!videoLinkOk">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/cv-tIoKFdFM?si=2ecmnxSDK2Z7SJke" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
     </div>
     <div>
         <p class="text-gray-700 text-3xl mt-4 text-justify">{{ game?.gameDescription }}</p>

@@ -4,7 +4,7 @@
     <div class="relative flex h-16 items-center justify-between">
         <button [routerLink]="['gameList']"
         class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">LISTE DES JEUX</button>
-        <button *ngIf="isAdminConnected" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">AJOUTER UN JEU</button>
+        <button *ngIf="isAdminConnected" [routerLink]="['gameCreate']" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">AJOUTER UN JEU</button>
     </div>
   </div>
 </nav>

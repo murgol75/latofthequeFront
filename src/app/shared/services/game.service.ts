@@ -4,6 +4,10 @@ import { Observable } from 'rxjs';
 import { User } from '../models/User';
 import { GameList } from '../models/GameList';
 import { Game } from '../models/Game';
+import { ThemeList } from '../models/ThemeList';
+import { KeywordList } from '../models/KeywordList';
+import { KeywordListId } from '../models/KeywordListId';
+import { ThemeListId } from '../models/ThemeListId';
 
 @Injectable({
   providedIn: 'root'
@@ -33,4 +37,13 @@ export class GameService {
   delete(id : number) : Observable<Game> {
     return this._httpClient.delete<Game>(`${this._baseUrl}/Game/`+id);
   }
+
+  getAllThemes(): Observable<ThemeListId[]> {
+    return this._httpClient.get<ThemeListId[]>(`${this._baseUrl}/Game/getAllThemes`);
+  }
+  getAllKeywords(): Observable<KeywordListId[]> {
+    return this._httpClient.get<KeywordListId[]>(`${this._baseUrl}/Game/getAllKeywords`);
+  }
+
+  
 }

@@ -13,6 +13,8 @@ export class GameDetailsComponent implements OnInit {
 
   game: Game | undefined;
   videoLink:SafeUrl | undefined;
+  videoLinkOk:boolean | undefined;
+
 
   constructor(private _activeRoute: ActivatedRoute,
     private _gameService: GameService,
@@ -28,6 +30,7 @@ export class GameDetailsComponent implements OnInit {
         this.game = value;
         // console.log(this.game);
         this.videoLink = this.sanitizer.bypassSecurityTrustResourceUrl(this.game.video);
+        this.game.video=="" ? this.videoLinkOk=false : this.videoLinkOk=true;
         if (!this.game) {
           this._router.navigateByUrl('notfound');
         }

@@ -7,7 +7,7 @@ import { AccueilComponent } from './shared/components/accueil/accueil.component'
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { NotfoundComponent } from './shared/components/notfound/notfound.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthTokenInterceptor } from './shared/interceptors/auth-token.interceptor';
 import { registerLocaleData } from '@angular/common';
 import localeFrBe from '@angular/common/locales/fr-BE';
@@ -19,16 +19,19 @@ registerLocaleData(localeFrBe);
     AppComponent,
     NavbarComponent,
     NotfoundComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+
   ],
   exports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
 ],
   providers: [
     {provide : HTTP_INTERCEPTORS, useClass : AuthTokenInterceptor, multi : true},

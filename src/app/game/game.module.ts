@@ -7,6 +7,7 @@ import { GameDetailsComponent } from './game-details/game-details.component';
 import { GameEditComponent } from './game-edit/game-edit.component';
 import { GameListComponent } from './game-list/game-list.component';
 import { GameComponent } from './game.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,11 +16,15 @@ import { GameComponent } from './game.component';
     GameDetailsComponent,
     GameEditComponent,
     GameListComponent,
-    GameComponent
+    GameComponent,
   ],
   imports: [
     CommonModule,
-    GameRoutingModule
-  ]
+    GameRoutingModule,
+    ReactiveFormsModule
+  ],
+  exports: [
+    ReactiveFormsModule
+],
 })
 export class GameModule { }
