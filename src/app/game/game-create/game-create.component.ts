@@ -9,6 +9,7 @@ import { GameService } from 'src/app/shared/services/game.service';
 import { ageValidator } from 'src/app/shared/validators/ageValidator.validator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { intValidator } from 'src/app/shared/validators/intValidator.validator';
+import { distinctKeywords } from 'src/app/shared/validators/distinctKeywords.validator';
 
 @Component({
   selector: 'app-game-create',
@@ -37,9 +38,24 @@ export class GameCreateComponent {
       video: ["", Validators.required],
       fkThemeId: [null, Validators.required],
       isExtension: [false, Validators.required],
-      fkKeywordsId: this._fb.array([], Validators.required),
+      fkKeywordsId: this._fb.array([]),
       
     });
+  }
+
+
+  
+//getter pour recuperer les Keywords dans notre eformgroup comme étant un Formarray
+  get fkKeywordsId() : FormArray {
+    return this.createForm.get('fkKeywordsId') as FormArray;
+  }
+
+  addKeyword() : void {
+    this.fkKeywordsId.push(this._fb.control(null,[Validators.required,distinctKeywords]))
+  }
+
+  removeKeyword(indice : number) : void {
+    this.fkKeywordsId.removeAt(indice);
   }
 
   loadKeywords() { 
@@ -84,7 +100,8 @@ export class GameCreateComponent {
       console.log('Formulaire invalide');
       console.log(this.createForm.value);
     } else {
-        console.log("JEU ENREGISTRE OK")
+        console.log("JEU ENREGISTRE OK");
+        // uploader l'image dans le repertoire assets/gamePictures
         console.log(this.createForm.value);
       // this.showSuccessMessage = true;
       // this._authService.create(this.createForm.value);
