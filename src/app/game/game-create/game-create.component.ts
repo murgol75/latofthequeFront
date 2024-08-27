@@ -9,7 +9,6 @@ import { GameService } from 'src/app/shared/services/game.service';
 import { ageValidator } from 'src/app/shared/validators/ageValidator.validator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { intValidator } from 'src/app/shared/validators/intValidator.validator';
-import { distinctKeywords } from 'src/app/shared/validators/distinctKeywords.validator';
 
 @Component({
   selector: 'app-game-create',
@@ -51,7 +50,7 @@ export class GameCreateComponent {
   }
 
   addKeyword() : void {
-    this.fkKeywordsId.push(this._fb.control(null,[Validators.required,distinctKeywords]))
+    this.fkKeywordsId.push(this._fb.control(null,[Validators.required]))
   }
 
   removeKeyword(indice : number) : void {
@@ -100,14 +99,31 @@ export class GameCreateComponent {
       console.log('Formulaire invalide');
       console.log(this.createForm.value);
     } else {
+      // Convertir fkThemeId en nombre et fkKeywordsId en tableau de nombres
+      const gameData = {
+        ...this.createForm.value,
+        fkThemeId: Number(this.createForm.value.fkThemeId), // Convertir en nombre
+        fkKeywordsId: this.createForm.value.fkKeywordsId.map(Number) // Convertir chaque élément en nombre
+    };
         console.log("JEU ENREGISTRE OK");
         // uploader l'image dans le repertoire assets/gamePictures
+        // ça va demander un boulot supplémentaire à gérer dans le back... pour le moment je vais mettre l'image à la main dans le repertoire
+
         console.log(this.createForm.value);
-      // this.showSuccessMessage = true;
-      // this._authService.create(this.createForm.value);
+        this._gameService.create(gameData).subscribe({
+          next: (response) => {
+              console.log('Jeu enregistré avec succès', response);
+          },
+          error: (error) => {
+              console.error('Erreur lors de l\'enregistrement du jeu', error);
+              if (error.status === 401) {
+                  alert('Authentification requise. Veuillez vous connecter.');
+              }
+          }
+      });
 
     }
-    return 1
+    // return 1
   }
 
 

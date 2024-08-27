@@ -16,6 +16,7 @@ export class AuthTokenInterceptor implements HttpInterceptor {
     let token = localStorage.getItem('Token');
     
     if(token && token !=='') {
+      console.log('je suis au Bearer Token');
       let requestClone = request.clone({setHeaders : {
         'Authorization' : `Bearer ${token}`
       }
