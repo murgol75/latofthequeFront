@@ -1,20 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { User } from '../models/User';
 import { GameList } from '../models/GameList';
 import { Game } from '../models/Game';
-import { ThemeList } from '../models/ThemeList';
-import { KeywordList } from '../models/KeywordList';
 import { KeywordListId } from '../models/KeywordListId';
 import { ThemeListId } from '../models/ThemeListId';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
   private _baseUrl: string = 'https://localhost:7238/api'
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient,
+    private _router: Router
+  ) {}
 
   getAll(): Observable<GameList[]> {
     // this._httpClient.get<GameList>(`${this._baseUrl}/Game/`)
@@ -35,7 +36,7 @@ export class GameService {
   }
 
   delete(id : number) : Observable<Game> {
-    return this._httpClient.delete<Game>(`${this._baseUrl}/Game/`+id);
+    return this._httpClient.delete<Game>(`${this._baseUrl}/Game/deleteGame/`+id);
   }
 
   getAllThemes(): Observable<ThemeListId[]> {

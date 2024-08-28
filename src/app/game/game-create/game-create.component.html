@@ -1,203 +1,161 @@
-<div>
-    <form [formGroup]="createForm" (ngSubmit)="createGame()">
-        <p>Creation du jeu</p>
+<div class="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <form [formGroup]="createForm" (ngSubmit)="createGame()" class="space-y-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Création du jeu</h2>
 
-        <!-- gameName OK -->
-        <div>
-            <div>
-                <label for="gameName">
-                    NOM DU JEU
-                </label>
-                <span class="text-primary text-red-600"
-                    *ngIf="createForm.get('gameName')?.touched && createForm.get('gameName')?.errors?.['required']">Champs
-                    requis</span>
-            </div>
-            <div>
-                <input id="gameName" type="text" placeholder="Nom du jeu" formControlName="gameName">
-            </div>
+        <!-- gameName -->
+        <div class="space-y-2">
+            <label for="gameName" class="block text-sm font-medium text-gray-700">
+                NOM DU JEU
+            </label>
+            <input id="gameName" type="text" placeholder="Nom du jeu" formControlName="gameName"
+                class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <span class="text-red-600 text-sm" *ngIf="createForm.get('gameName')?.touched && createForm.get('gameName')?.errors?.['required']">
+                Champs requis
+            </span>
         </div>
 
-        <!-- playerMin OK-->
-        <div>
-            <div>
-                <label for="playersMin">
-                    Nombre de joueurs minimum
-                </label>
-                <span class="text-primary text-red-600"
-                    *ngIf="createForm.get('playersMin')?.touched && createForm.get('playersMin')?.errors?.['required']">Champs
-                    requis</span>
-                <span class="text-primary text-red-600" *ngIf="createForm.get('playersMin')?.errors?.['min']">Minimum 1
-                    joueur</span>
-            </div>
-            <div>
-                <input id="playersMin" type="number" placeholder="joueurs minimum" formControlName="playersMin">
-            </div>
+        <!-- playersMin -->
+        <div class="space-y-2">
+            <label for="playersMin" class="block text-sm font-medium text-gray-700">
+                Nombre de joueurs minimum
+            </label>
+            <input id="playersMin" type="number" placeholder="Joueurs minimum" formControlName="playersMin"
+                class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <span class="text-red-600 text-sm" *ngIf="createForm.get('playersMin')?.touched && createForm.get('playersMin')?.errors?.['required']">
+                Champs requis
+            </span>
+            <span class="text-red-600 text-sm" *ngIf="createForm.get('playersMin')?.errors?.['min']">
+                Minimum 1 joueur
+            </span>
         </div>
 
-        <!-- playerMax OK -->
-        <div>
-            <div>
-                <label for="playersMax">
-                    Nombre de joueurs maximum
-                </label>
-                <span class="text-primary text-red-600"
-                    *ngIf="createForm.get('playersMax')?.touched && createForm.get('playersMax')?.errors?.['required']">Champs
-                    requis</span>
-                <span class="text-primary text-red-600"
-                    *ngIf="createForm.get('playersMax')?.errors?.['playersMaxInvalid']">Doit être supérieur ou égal au
-                    nombre de joueurs minimum</span>
-            </div>
-            <div>
-                <input id="playersMax" type="number" placeholder="joueurs maximum" formControlName="playersMax">
-            </div>
+        <!-- playersMax -->
+        <div class="space-y-2">
+            <label for="playersMax" class="block text-sm font-medium text-gray-700">
+                Nombre de joueurs maximum
+            </label>
+            <input id="playersMax" type="number" placeholder="Joueurs maximum" formControlName="playersMax"
+                class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <span class="text-red-600 text-sm" *ngIf="createForm.get('playersMax')?.touched && createForm.get('playersMax')?.errors?.['required']">
+                Champs requis
+            </span>
+            <span class="text-red-600 text-sm" *ngIf="createForm.get('playersMax')?.errors?.['playersMaxInvalid']">
+                Doit être supérieur ou égal au nombre de joueurs minimum
+            </span>
         </div>
 
-        <!-- AverageDuration OK -->
-        <div>
-            <div>
-                <label for="averageDuration">
-                    Durée du jeu
-                </label>
-                <span class="text-primary text-red-600"
-                    *ngIf="createForm.get('averageDuration')?.touched && createForm.get('averageDuration')?.errors?.['required']">Champs
-                    requis</span>
-            </div>
-            <div>
-                <input id="averageDuration" type="number" placeholder="durée du jeu en minutes"
-                    formControlName="averageDuration">
-            </div>
+        <!-- averageDuration -->
+        <div class="space-y-2">
+            <label for="averageDuration" class="block text-sm font-medium text-gray-700">
+                Durée du jeu (en minutes)
+            </label>
+            <input id="averageDuration" type="number" placeholder="Durée du jeu" formControlName="averageDuration"
+                class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <span class="text-red-600 text-sm" *ngIf="createForm.get('averageDuration')?.touched && createForm.get('averageDuration')?.errors?.['required']">
+                Champs requis
+            </span>
         </div>
 
-        <!-- ageMin  OK-->
-        <div>
-            <div>
-                <label for="ageMin">
-                    age minimum
-                </label>
-                <span class="text-primary text-red-600"
-                    *ngIf="createForm.get('ageMin')?.touched && createForm.get('ageMin')?.errors?.['required']">Champs
-                    requis</span>
-            </div>
-            <div>
-                <input id="ageMin" type="number" placeholder="Age minimum" formControlName="ageMin">
-            </div>
+        <!-- ageMin -->
+        <div class="space-y-2">
+            <label for="ageMin" class="block text-sm font-medium text-gray-700">
+                Âge minimum
+            </label>
+            <input id="ageMin" type="number" placeholder="Âge minimum" formControlName="ageMin"
+                class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <span class="text-red-600 text-sm" *ngIf="createForm.get('ageMin')?.touched && createForm.get('ageMin')?.errors?.['required']">
+                Champs requis
+            </span>
         </div>
 
-        <!-- picture (trouver le moyen d'uploader l'image input type="file" ???)-->
-        <div>
-            <div>
-                <label for="picture">
-                    dessin du jeu
-                </label>
-                <span class="text-primary text-red-600"
-                    *ngIf="createForm.get('picture')?.touched && createForm.get('picture')?.errors?.['required']">Champs
-                    requis</span>
-            </div>
-            <div>
-                <!-- <input id="picture" type="file" placeholder="Dessin du jeu" formControlName="picture"> -->
-                <input id="picture" type="file" (change)="onFileChange($event)">
-            </div>
+        <!-- picture -->
+        <div class="space-y-2">
+            <label for="picture" class="block text-sm font-medium text-gray-700">
+                Dessin du jeu
+            </label>
+            <input id="picture" type="file" (change)="onFileChange($event)"
+                class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <span class="text-red-600 text-sm" *ngIf="createForm.get('picture')?.touched && createForm.get('picture')?.errors?.['required']">
+                Champs requis
+            </span>
         </div>
 
-        <!-- GameDescription -->
-        <div>
-            <div>
-                <label for="gameDescription">
-                    Description du jeu
-                </label>
-                <span class="text-primary text-red-600"
-                    *ngIf="createForm.get('gameDescription')?.touched && createForm.get('gameDescription')?.errors?.['required']">Champs
-                    requis</span>
-            </div>
-            <div>
-                <textarea id="gameDescription" rows="4" cols="150" placeholder="Description du jeu"
-                    formControlName="gameDescription"></textarea>
-            </div>
+        <!-- gameDescription -->
+        <div class="space-y-2">
+            <label for="gameDescription" class="block text-sm font-medium text-gray-700">
+                Description du jeu
+            </label>
+            <textarea id="gameDescription" rows="4" placeholder="Description du jeu" formControlName="gameDescription"
+                class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+            <span class="text-red-600 text-sm" *ngIf="createForm.get('gameDescription')?.touched && createForm.get('gameDescription')?.errors?.['required']">
+                Champs requis
+            </span>
         </div>
 
         <!-- video -->
-        <div>
-            <div>
-                <label for="video">
-                    Lien video des regles (exemple de format correct : https://www.youtube.com/embed/YrhOP4IxXkU?si=f2jfQwovkcLJzuNV)
-                </label>
-                <span class="text-primary text-red-600"
-                    *ngIf="createForm.get('video')?.touched && createForm.get('video')?.errors?.['required']">Champs
-                    requis</span>
-            </div>
-            <div>
-                <input id="video" type="url" placeholder="Lien video des regles" formControlName="video">
-            </div>
+        <div class="space-y-2">
+            <label for="video" class="block text-sm font-medium text-gray-700">
+                Lien vidéo des règles
+            </label>
+            <input id="video" type="url" placeholder="Lien vidéo des règles" formControlName="video"
+                class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <span class="text-red-600 text-sm" *ngIf="createForm.get('video')?.touched && createForm.get('video')?.errors?.['required']">
+                Champs requis
+            </span>
         </div>
 
-        <!-- isExtention -->
-        <div>
-            <div>
-                <label for="isExtension">
-                    Est-ce une extention ? 
-                </label>
-                <span class="text-primary text-red-600"
-                    *ngIf="createForm.get('isExtension')?.touched && createForm.get('isExtension')?.errors?.['required']">Champs
-                    requis</span>
-            </div>
-            <div>
-                <input id="isExtension" type="checkbox" formControlName="isExtension">
-            </div>
+        <!-- isExtension -->
+        <div class="space-y-2">
+            <label for="isExtension" class="block text-sm font-medium text-gray-700">
+                Est-ce une extension ?
+            </label>
+            <input id="isExtension" type="checkbox" formControlName="isExtension"
+                class="h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
         </div>
-
-
 
         <!-- fkThemeId -->
-
-        <div>
-            <div>
-                <label for="fkThemeId">Theme du jeu</label>
-            </div>
-            <div>
-                <select id="fkThemeId" formControlName="fkThemeId">
-                    <option *ngFor="let theme of themeList" [value]="theme.themeId">
-                        {{ theme.themeName }}
-                    </option>
-                </select>
-            </div>
+        <div class="space-y-2">
+            <label for="fkThemeId" class="block text-sm font-medium text-gray-700">
+                Thème du jeu
+            </label>
+            <select id="fkThemeId" formControlName="fkThemeId"
+                class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <option *ngFor="let theme of themeList" [value]="theme.themeId">
+                    {{ theme.themeName }}
+                </option>
+            </select>
         </div>
 
-
-
-
-
-
-        <!-- fkKeywordsId-->
-
-        <div formArrayName="fkKeywordsId">
-            <div>
-                <div>mot-clés</div>
-                <button type="button" (click)="addKeyword()">Ajoutez un mot-clé</button>
-                <div *ngFor="let control of fkKeywordsId.controls; let i = index">
-                    <label [for]="'ffkKeywordsId'+i">{{i+1}}</label>
-                    <select [id]="'ffkKeywordsId'+i" [formControlName]="i">
-                        <option *ngFor="let keyword of keywordList" [value]="keyword.keywordId">
-                            {{ keyword.keywordName }}
-                        </option>
-                    </select>
-                    <span (click)="removeKeyword(i)">❌</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- Bouton valider -->
-        <div class="md:flex md:items-center">
-            <div class="md:w-1/3"></div>
-            <div class="md:w-2/3">
-                <button
-                    class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                    type="submit">
-                    Enregistrer le jeu
+        <!-- fkKeywordsId -->
+        <div formArrayName="fkKeywordsId" class="space-y-2">
+            <div class="flex items-center justify-between">
+                <label class="block text-sm font-medium text-gray-700">Mot-clés</label>
+                <button type="button" (click)="addKeyword()"
+                    class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">
+                    Ajouter un mot-clé
                 </button>
             </div>
+            <div *ngFor="let control of fkKeywordsId.controls; let i = index" class="flex items-center space-x-2">
+                <label [for]="'ffkKeywordsId'+i" class="text-gray-700">{{ i + 1 }}</label>
+                <select [id]="'ffkKeywordsId'+i" [formControlName]="i"
+                    class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <option *ngFor="let keyword of keywordList" [value]="keyword.keywordId">
+                        {{ keyword.keywordName }}
+                    </option>
+                </select>
+                <button type="button" (click)="removeKeyword(i)"
+                    class="text-red-600 hover:text-red-800 text-sm font-medium">
+                    ❌
+                </button>
+            </div>
+        </div>
+
+        <!-- Bouton valider -->
+        <div class="text-right">
+            <button
+                class="shadow bg-indigo-600 hover:bg-indigo-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
+                Enregistrer le jeu
+            </button>
         </div>
     </form>
 </div>

@@ -9,6 +9,7 @@ import { GameService } from 'src/app/shared/services/game.service';
 import { ageValidator } from 'src/app/shared/validators/ageValidator.validator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { intValidator } from 'src/app/shared/validators/intValidator.validator';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-game-create',
@@ -25,6 +26,8 @@ export class GameCreateComponent {
 
   constructor(private _gameService : GameService,
     private _fb:FormBuilder,
+    private _routeur:Router
+    
   ) {
     this.createForm = this._fb.group({
       gameName: ["", Validators.required],
@@ -113,6 +116,7 @@ export class GameCreateComponent {
         this._gameService.create(gameData).subscribe({
           next: (response) => {
               console.log('Jeu enregistré avec succès', response);
+              this._routeur.navigate(['game']);
           },
           error: (error) => {
               console.error('Erreur lors de l\'enregistrement du jeu', error);
@@ -123,7 +127,7 @@ export class GameCreateComponent {
       });
 
     }
-    // return 1
+    // return 1    game
   }
 
 
