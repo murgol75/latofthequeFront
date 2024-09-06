@@ -31,8 +31,8 @@ export class GameService {
     return this._httpClient.post<Game>(`${this._baseUrl}/Game/createGame`, game);
 }
 
-  update(id : number, game : Game) : Observable<User> {
-    return this._httpClient.put<User>(`${this._baseUrl}/Game/`+id, game)
+  update(id : number, game : Game) : Observable<Game> {
+    return this._httpClient.put<Game>(`${this._baseUrl}/Game/updateGame/${id}`, game)
   }
 
   delete(id : number) : Observable<Game> {

@@ -10,6 +10,7 @@ const routes: Routes = [
 { path : "gameDetails", component : GameDetailsComponent},
 { path : "gameDetails/:id", component : GameDetailsComponent},
 { path : "gameEdit", component : GameEditComponent},
+{ path : "gameEdit/:id", component : GameEditComponent},
 { path : "gameList", component : GameListComponent},
 ];
 

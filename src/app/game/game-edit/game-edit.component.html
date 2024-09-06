@@ -1,2 +1,150 @@
-<p>game-edit works!</p>
-<!-- <p>ici l'admin pourra modifier des jeux</p> -->
+<div class="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <form [formGroup]="updateForm" (ngSubmit)="updateGame()" class="space-y-6">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Mise à jour du jeu</h2>
+  
+      <!-- Les champs restent les mêmes que dans le formulaire de création -->
+      <!-- gameName -->
+      <div class="space-y-2">
+        <label for="gameName" class="block text-sm font-medium text-gray-700">NOM DU JEU</label>
+        <input id="gameName" type="text" placeholder="Nom du jeu" formControlName="gameName"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <span class="text-red-600 text-sm" *ngIf="updateForm.get('gameName')?.touched && updateForm.get('gameName')?.errors?.['required']">
+          Champs requis
+        </span>
+      </div>
+  
+      <!-- playersMin -->
+      <div class="space-y-2">
+        <label for="playersMin" class="block text-sm font-medium text-gray-700">Nombre de joueurs minimum</label>
+        <input id="playersMin" type="number" placeholder="Joueurs minimum" formControlName="playersMin"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <span class="text-red-600 text-sm" *ngIf="updateForm.get('playersMin')?.touched && updateForm.get('playersMin')?.errors?.['required']">
+          Champs requis
+        </span>
+        <span class="text-red-600 text-sm" *ngIf="updateForm.get('playersMin')?.errors?.['min']">
+          Minimum 1 joueur
+        </span>
+      </div>
+  
+      <!-- playersMax -->
+      <div class="space-y-2">
+        <label for="playersMax" class="block text-sm font-medium text-gray-700">Nombre de joueurs maximum</label>
+        <input id="playersMax" type="number" placeholder="Joueurs maximum" formControlName="playersMax"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <span class="text-red-600 text-sm" *ngIf="updateForm.get('playersMax')?.touched && updateForm.get('playersMax')?.errors?.['required']">
+          Champs requis
+        </span>
+        <span class="text-red-600 text-sm" *ngIf="updateForm.get('playersMax')?.errors?.['playersMaxInvalid']">
+          Doit être supérieur ou égal au nombre de joueurs minimum
+        </span>
+      </div>
+  
+      <!-- averageDuration -->
+      <div class="space-y-2">
+        <label for="averageDuration" class="block text-sm font-medium text-gray-700">Durée du jeu (en minutes)</label>
+        <input id="averageDuration" type="number" placeholder="Durée du jeu" formControlName="averageDuration"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <span class="text-red-600 text-sm" *ngIf="updateForm.get('averageDuration')?.touched && updateForm.get('averageDuration')?.errors?.['required']">
+          Champs requis
+        </span>
+      </div>
+  
+      <!-- ageMin -->
+      <div class="space-y-2">
+        <label for="ageMin" class="block text-sm font-medium text-gray-700">Âge minimum</label>
+        <input id="ageMin" type="number" placeholder="Âge minimum" formControlName="ageMin"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <span class="text-red-600 text-sm" *ngIf="updateForm.get('ageMin')?.touched && updateForm.get('ageMin')?.errors?.['required']">
+          Champs requis
+        </span>
+      </div>
+  
+      <!-- picture -->
+
+
+      
+      <div class="space-y-2">
+        <label for="currentPicture" class="block text-sm font-medium text-gray-700">Image actuelle</label>
+        <img *ngIf="updateForm.get('picture')?.value" 
+             [src]="'../../assets/gamePictures/' + updateForm.get('picture')?.value" 
+             alt="Image du jeu" 
+             class="max-w-xs max-h-48">
+      </div>
+
+      <div class="space-y-2">
+        <label for="picture" class="block text-sm font-medium text-gray-700">Dessin du jeu</label>
+        <input id="picture" type="file" (change)="onFileChange($event)"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <span class="text-red-600 text-sm" *ngIf="updateForm.get('picture')?.touched && updateForm.get('picture')?.errors?.['required']">
+          Champs requis
+        </span>
+      </div>
+  
+      <!-- gameDescription -->
+      <div class="space-y-2">
+        <label for="gameDescription" class="block text-sm font-medium text-gray-700">Description du jeu</label>
+        <textarea id="gameDescription" rows="4" placeholder="Description du jeu" formControlName="gameDescription"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+        <span class="text-red-600 text-sm" *ngIf="updateForm.get('gameDescription')?.touched && updateForm.get('gameDescription')?.errors?.['required']">
+          Champs requis
+        </span>
+      </div>
+  
+      <!-- video -->
+      <div class="space-y-2">
+        <label for="video" class="block text-sm font-medium text-gray-700">Lien vidéo des règles</label>
+        <input id="video" type="url" placeholder="Lien vidéo des règles" formControlName="video"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <span class="text-red-600 text-sm" *ngIf="updateForm.get('video')?.touched && updateForm.get('video')?.errors?.['required']">
+          Champs requis
+        </span>
+      </div>
+  
+      <!-- isExtension -->
+      <div class="space-y-2">
+        <label for="isExtension" class="block text-sm font-medium text-gray-700">Est-ce une extension ?</label>
+        <input id="isExtension" type="checkbox" formControlName="isExtension"
+          class="h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+      </div>
+  
+      <!-- fkThemeId -->
+      <div class="space-y-2">
+        <label for="fkThemeId" class="block text-sm font-medium text-gray-700">Thème du jeu</label>
+        <select id="fkThemeId" formControlName="fkThemeId"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <option *ngFor="let theme of themeList" [value]="theme.themeName">
+            {{ theme.themeName }}
+          </option>
+        </select>
+      </div>
+  
+      <!-- fkKeywordsId -->
+      <div formArrayName="fkKeywordsId" class="space-y-2">
+        <div class="flex items-center justify-between">
+          <label class="block text-sm font-medium text-gray-700">Mot-clés</label>
+          <button type="button" (click)="addKeyword()"
+            class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Ajouter un mot-clé</button>
+        </div>
+        <div *ngFor="let control of fkKeywordsId.controls; let i = index" class="flex items-center space-x-2">
+          <label [for]="'ffkKeywordsId'+i" class="text-gray-700">{{ i + 1 }}</label>
+          <select [id]="'ffkKeywordsId'+i" [formControlName]="i"
+            class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <option *ngFor="let keyword of keywordList" [value]="keyword.keywordId">
+              {{ keyword.keywordName }}
+            </option>
+          </select>
+          <button type="button" (click)="removeKeyword(i)"
+            class="text-red-600 hover:text-red-800 text-sm font-medium">❌</button>
+        </div>
+      </div>
+  
+      <!-- Bouton valider -->
+      <div class="text-right">
+        <button
+          class="shadow bg-indigo-600 hover:bg-indigo-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
+          Mettre à jour le jeu
+        </button>
+      </div>
+    </form>
+  </div>
+  
