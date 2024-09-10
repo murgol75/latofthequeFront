@@ -6,6 +6,7 @@ export interface GameList {
     averageDuration: number;
     ageMin: number;
     picture: string;
+    isExtension: boolean;
     fkTheme: string;
     fkKeywords: string[];
     fkSecondaryThemes: string[];

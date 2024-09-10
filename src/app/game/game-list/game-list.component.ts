@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { GameService } from 'src/app/shared/services/game.service';
 import { PlayerService } from 'src/app/shared/services/player.service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-game-list',
@@ -14,7 +16,17 @@ import { Router } from '@angular/router';
 export class GameListComponent {
 
   gameList: GameList[] = [];
+  filteredGameList: GameList[] = [];
   isAdminConnected: boolean = false;
+
+  // Filtres
+  filter = {
+    name: '',
+    players: null as number | null,
+    duration: null as number | null,
+    age: null as number | null,
+    isExtension: false
+  };
 
 
   constructor(
@@ -50,13 +62,38 @@ export class GameListComponent {
     this._gameService.getAll().subscribe({
       next: (games) => {
         this.gameList = games;
-        // console.log(this.gameList)
+        this.applyFilters();  // Applique les filtres après chargement des jeux
+        console.log(this.gameList);
+
+        // Si tu veux vérifier un jeu spécifique
+      this.gameList.forEach(game => {
+        console.log(game.isExtension, typeof game.isExtension);  // Vérifie IsExtension pour chaque jeu
+      });
+        
       },
       error: (err) => {
         console.error('Error loading games', err);
       }
     });
   }
+
+ // Méthode de filtrage
+ applyFilters() {
+  this.filteredGameList = this.gameList.filter(game => {
+    const matchesName = this.filter.name ? game.gameName.toLowerCase().includes(this.filter.name.toLowerCase()) : true;
+    const matchesPlayers = this.filter.players ? 
+      (game.playersMin <= this.filter.players && game.playersMax >= this.filter.players) : true;
+    const matchesDuration = this.filter.duration ? game.averageDuration <= this.filter.duration : true;
+    const matchesAge = this.filter.age ? game.ageMin >= this.filter.age : true;
+    // const matchesExtension = this.filter.isExtension ? game.IsExtension : true;
+    // const matchesExtension = this.filter.isExtension ? true : !game.IsExtension;
+    const matchesExtension = this.filter.isExtension ? true : !game.isExtension;
+
+    
+    return matchesName && matchesPlayers && matchesDuration && matchesAge && matchesExtension;
+  });
+}
+
 
 
   delete(id: number, gameName: string) {
