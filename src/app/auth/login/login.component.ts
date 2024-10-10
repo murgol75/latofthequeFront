@@ -20,13 +20,9 @@ export class LoginComponent {
     private _fb: FormBuilder,
     private _router: Router,
     private _authService: AuthService) {
-    // this.loginForm = this._fb.group({
-    //   Nickname: [null, Validators.required],
-    //   Password: [null, Validators.required]
-    // });
     this.loginForm = this._fb.group({
-      Nickname: ['lapinou', Validators.required],
-      Password: ['Test1234$', Validators.required]
+      Nickname: [null, Validators.required],
+      Password: [null, Validators.required]
     });
   }
   ngOnInit(): void {

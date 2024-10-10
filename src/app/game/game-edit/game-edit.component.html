@@ -61,19 +61,18 @@
   
       <!-- picture -->
 
-
+<!-- <p>{{}}</p> -->
       
       <div class="space-y-2">
         <label for="currentPicture" class="block text-sm font-medium text-gray-700">Image actuelle</label>
-        <img *ngIf="updateForm.get('picture')?.value" 
-             [src]="'../../assets/gamePictures/' + updateForm.get('picture')?.value" 
+        <img [src]="'../../assets/gamePictures/' + updateForm.get('picture')?.value" 
              alt="Image du jeu" 
              class="max-w-xs max-h-48">
       </div>
 
       <div class="space-y-2">
         <label for="picture" class="block text-sm font-medium text-gray-700">Dessin du jeu</label>
-        <input id="picture" type="file" (change)="onFileChange($event)"
+        <input id="picture" type="text" formControlName="picture"
           class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
         <span class="text-red-600 text-sm" *ngIf="updateForm.get('picture')?.touched && updateForm.get('picture')?.errors?.['required']">
           Champs requis
@@ -107,15 +106,16 @@
           class="h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
       </div>
   
-      <!-- fkThemeId -->
+      <!-- fkTheme -->
       <div class="space-y-2">
         <label for="fkThemeId" class="block text-sm font-medium text-gray-700">Thème du jeu</label>
         <select id="fkThemeId" formControlName="fkThemeId"
-          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          <option *ngFor="let theme of themeList" [value]="theme.themeName">
-            {{ theme.themeName }}
-          </option>
-        </select>
+  class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+  <option *ngFor="let theme of themeList" [value]="theme.themeId">
+    {{ theme.themeName }}
+  </option>
+</select>
+
       </div>
   
       <!-- fkKeywordsId -->

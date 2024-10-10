@@ -9,7 +9,8 @@ export interface Game {
     gameDescription : string;
     video : string;
     isExtension : boolean;
-    fkTheme : number;
+    fkThemeId : number;
+    fkTheme : string;
     fkKeywords: string[];
     fkSecondaryThemes:string;
 

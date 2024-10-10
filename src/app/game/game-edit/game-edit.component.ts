@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Game } from 'src/app/shared/models/Game';
 import { KeywordListId } from 'src/app/shared/models/KeywordListId';
 import { ThemeListId } from 'src/app/shared/models/ThemeListId';
 import { GameService } from 'src/app/shared/services/game.service';
@@ -29,7 +30,7 @@ export class GameEditComponent implements OnInit{
       playersMax: [1, Validators.required],
       averageDuration: [1, Validators.required],
       ageMin: [1, Validators.required],
-      picture: ["", Validators.required],
+      picture: [""],
       gameDescription: ["", Validators.required],
       video: ["", Validators.required],
       fkThemeId: [null, Validators.required],
@@ -76,31 +77,30 @@ export class GameEditComponent implements OnInit{
   loadGame(): void {
     if (this.gameId !== null) {
       this._gameService.getById(this.gameId).subscribe({
-        next: (game) => {
+        next: (game: Game) => {
+          // Patch le formulaire avec les données du jeu, y compris fkThemeId pour le thème
           this.updateForm.patchValue({
-            ...game,
-            fkThemeId: game.fkTheme,
-            fkKeywordsId: [] // Initialise le tableau pour les mots-clés
+            gameName: game.gameName,
+            playersMin: game.playersMin,
+            playersMax: game.playersMax,
+            averageDuration: game.averageDuration,
+            ageMin: game.ageMin,
+            picture: game.picture,
+            gameDescription: game.gameDescription,
+            video: game.video,
+            isExtension: game.isExtension,
+            fkThemeId: game.fkThemeId,  // Utilise l'ID du thème pour préremplir le champ select
+            // fkTheme:game.fkTheme
           });
   
-          // Assumant que fkKeywords contient les noms des mots-clés, pas les IDs
+          // Remplir les mots-clés dans le tableau
           game.fkKeywords.forEach((keywordName: string) => {
-            // Ici, vous devrez peut-être rechercher l'ID correspondant au nom
             const keyword = this.keywordList.find(k => k.keywordName === keywordName);
             if (keyword) {
               this.fkKeywordsId.push(this._fb.control(keyword.keywordId));
             }
           });
-
-          // Si tu veux afficher l'image actuelle :
-        this.updateForm.patchValue({
-          picture: game.picture // Patch le formulaire avec le nom de l'image
-
-        });
-          // afficher le theme
-          this.updateForm.patchValue({
-            fkThemeId: game.fkTheme
-        });
+          console.log(game);
         },
         error: (err) => {
           console.error('Error loading game', err);
@@ -109,15 +109,16 @@ export class GameEditComponent implements OnInit{
     }
   }
   
+  
 
-  onFileChange(event: any): void {
-    if (event.target.files.length > 0) {
-      this.selectedFile = event.target.files[0];
-      this.updateForm.patchValue({
-        picture: this.selectedFile!.name
-      });
-    }
-  }
+  // onFileChange(event: any): void {
+  //   if (event.target.files.length > 0) {
+  //     this.selectedFile = event.target.files[0];
+  //     this.updateForm.patchValue({
+  //       picture: this.selectedFile!.name
+  //     });
+  //   }
+  // }
 
   updateGame(): void {
     if (!this.updateForm.valid) {
